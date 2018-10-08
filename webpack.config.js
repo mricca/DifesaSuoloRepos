@@ -1,9 +1,9 @@
 const path = require("path");
 
-const themeEntries = require('./MapStore2/themes.js').themeEntries;
-const extractThemesPlugin = require('./MapStore2/themes.js').extractThemesPlugin;
+const themeEntries = require('./themes.js').themeEntries;
+const extractThemesPlugin = require('./themes.js').extractThemesPlugin;
 
-module.exports = require('./MapStore2/buildConfig')(
+module.exports = require('./buildConfig')(
     {
         'sar': path.join(__dirname, "js", "app"),
         'sar-embedded': path.join(__dirname, "MapStore2", "web", "client", "product", "embedded"),
