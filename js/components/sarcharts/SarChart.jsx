@@ -56,7 +56,7 @@ class SarChart extends React.Component {
                 <LineChart width={600} height={400} data={this.formatData(this.props.data)} syncId="anyId"
                       margin={{top: 10, right: 30, left: 0, bottom: 10}}>
                   <CartesianGrid strokeDasharray="3 3"/>
-                  <XAxis dataKey="name" hide={false} angle={-45}/>
+                  <XAxis dataKey="name" hide={false} angle={-10}/>
                   <YAxis/>
                   <Tooltip/>
                   <Legend/>
