@@ -46,6 +46,7 @@ const appConfig = require('./appConfig');
  * const plugins = require('./plugins');
  */
 const plugins = require('../MapStore2/web/client/product/plugins');
+plugins.plugins.AboutPlugin = require('../js/plugins/About');
 plugins.plugins.SarChartsPlugin = require('../js/plugins/SarCharts');
 
 require('../MapStore2/web/client/product/main')(appConfig, plugins);

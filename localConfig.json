@@ -174,7 +174,10 @@
                 "externalCookieUrl" : "",
                 "declineUrl" : "http://www.google.com"
               }
-            }, "SarCharts"
+            }, "HelpLink", "SarCharts", {
+              "name": "About",
+              "showIn": ["BurgerMenu"]
+            }
         ],
         "desktop": [ "Details",
           {
@@ -202,7 +205,7 @@
                 }
               }
             }
-          }, "AutoMapUpdate", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "FloatingLegend",
+          }, "AutoMapUpdate", "HelpLink", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "FloatingLegend",
             {
                 "name": "Identify",
                 "cfg": {
@@ -253,6 +256,9 @@
                 "cfg": {
                     "wrap": true
                 }
+            }, {
+              "name": "About",
+              "showIn": ["BurgerMenu"]
             }, {
               "name": "MousePosition",
               "cfg": {
@@ -311,7 +317,7 @@
                 "declineUrl" : "http://www.google.com"
                 }
             },
-            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig", "SarCharts"
+            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig", {"name": "SarCharts", "cfg": {"withRef": true}}
         ],
         "embedded": [{
                 "name": "Map",
