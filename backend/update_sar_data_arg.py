@@ -36,6 +36,7 @@ import logging
 import requests
 import connessioneSar
 import shutil
+import ftpSarDownload
 
 #data_list = {
 #    'a_elba': 'TOSCANA_ELBA_SNT_T15_A_',
@@ -64,11 +65,10 @@ def zipdir(path, ziph, v):
                         shape.find('.shp') != -1 or
                             shape.find('.shx') != -1):
                 ziph.write(shape)
-        new_qml = shapes[0][:-3] + 'qml'
-        shutil.copyfile('legenda.qml', new_qml)
-        ziph.write(new_qml)
-        ziph.write("Linee guida per l\'utilizzo dei dati interferometrici del geoportale.pdf")
-        ziph.write("Termini di utilizzo dei dati del geoportale.pdf")
+        if len(shapes) > 0:
+            new_qml = shapes[0][:-3] + 'qml'
+            shutil.copyfile('legenda.qml', new_qml)
+            ziph.write(new_qml)
 
 def sarShapeZipEndMove(zip,v):
     """Unzip sar shapefile
@@ -80,6 +80,8 @@ def sarShapeZipEndMove(zip,v):
     """
     zip_ref = zipfile.ZipFile(zip, "w", zipfile.ZIP_DEFLATED)
     zipdir('./', zip_ref, v)
+    zip_ref.write("Linee guida per l\'utilizzo dei dati interferometrici del geoportale.pdf")
+    zip_ref.write("Termini di utilizzo dei dati del geoportale.pdf")
     zip_ref.close()
 
 def sarShapeUnzip(zip):
@@ -175,7 +177,7 @@ def updateSarData(conn,k,v):
     cursor = conn.cursor()
 
     logger = logging.getLogger('update_sar_data')
-    hdlr = logging.FileHandler('/home/geouser/DATI_SAR_RT_UPDATE/logs/update_sar_data_{0}.log'.format(v))
+    hdlr = logging.FileHandler('/home/geouser/DATI_SAR_RT_UPDATE/logs/update_sar_data_{0}.log'.format(k))
     formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
     hdlr.setFormatter(formatter)
     logger.addHandler(hdlr)
@@ -300,20 +302,25 @@ def main(argv):
             key = arg
         elif opt in ("-v", "--vvalue"):
             value = arg
+    # Controllo che sull'ftp siano presenti i nuovi shapefile zip per l'aggiornamento.
+    ftpParameters = connessioneSar.ParametriFtp()
+    checkFile = ftpSarDownload.downloadSarZIP(value, ftpParameters)
+    if len(checkFile) > 0:
+        try:
+            parameters = connessioneSar.ParametriDb()
+            sar_db_connection = psycopg2.connect(
+                host=parameters.host,
+                user=parameters.user,
+                password=parameters.password,
+                dbname=parameters.dbname
+            )
+        except:
+            print "I am unable to connect to dati_sar_rt database"
 
-    try:
-        parameters = connessioneSar.ParametriDb()
-        sar_db_connection = psycopg2.connect(
-            host=parameters.host,
-            user=parameters.user,
-            password=parameters.password,
-            dbname=parameters.dbname
-        )
-    except:
-        print "I am unable to connect to dati_sar_rt database"
-
-    updateSarData(sar_db_connection, key, value)
-    sar_db_connection.close()
+        updateSarData(sar_db_connection, key, value)
+        sar_db_connection.close()
+    else:
+        print "Nessun aggiornamento presente"
 
 if __name__ == "__main__":
     main(sys.argv[1:])
