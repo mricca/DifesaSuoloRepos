@@ -1,10 +1,10 @@
 {
     "proxyUrl": {
         "url": "proxy/?url=",
-        "useCORS": ["http://geoportale.lamma.rete.toscana.it/cgi-bin/sar_app/sarCharts.py", "https://nominatim.openstreetmap.org", "http://spatialreference.org/ref/epsg/3003/proj4/"]
+        "useCORS": ["https://nominatim.openstreetmap.org", "http://spatialreference.org/ref/epsg/3003/proj4/"]
     },
     "geoStoreUrl": "rest/geostore/",
-    "printUrl": "http://geoportale.lamma.rete.toscana.it/geoserver_sar/pdf/info.json",
+    "printUrl": "https://geoportale.lamma.rete.toscana.it/geoserver_sar/pdf/info.json",
     "bingApiKey": "AhuXBu7ipR1gNbBfXhtUAyCZ6rkC5PkWpxs2MnMRZ1ZupxQfivjLCch22ozKSCAn",
     "mapquestApiKey": "__API_KEY_MAPQUEST__",
     "initialMapFilter": "",
@@ -95,7 +95,7 @@
                     },
                     "tools": ["locate"]
                 }
-            }, "Version", "DrawerMenu",
+            }, "Home", "Version", "DrawerMenu",
             {
                 "name": "BackgroundSelector",
                 "cfg": {
@@ -123,6 +123,13 @@
                     }
                 }
             }, {
+                "name": "Locate",
+                "override": {
+                    "Toolbar": {
+                        "alwaysVisible": true
+                    }
+                }
+            }, "Home", {
                 "name": "TOC",
                 "cfg": {
                     "activateMetedataTool": false,
@@ -176,9 +183,6 @@
                 "externalCookieUrl" : "",
                 "declineUrl" : "http://www.google.com"
               }
-            }, "HelpLink", {"name": "SarCharts", "cfg": {"withGlobalRef": true}}, {
-              "name": "About",
-              "showIn": ["BurgerMenu"]
             }
         ],
         "desktop": [ "Details",
@@ -207,7 +211,7 @@
                 }
               }
             }
-          }, "AutoMapUpdate", "HelpLink", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "FloatingLegend",
+          }, "AutoMapUpdate", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "FloatingLegend",
             {
                 "name": "Identify",
                 "cfg": {
@@ -220,7 +224,15 @@
                     "position": 11
                   }
                 }
-            }, "FeatureEditor",
+            },
+            {
+                "name": "Locate",
+                "override": {
+                    "Toolbar": {
+                        "alwaysVisible": true
+                    }
+                }
+            }, "Home", "FeatureEditor",
             {
               "name": "QueryPanel",
               "cfg": {
@@ -319,7 +331,7 @@
                 "declineUrl" : "http://www.google.com"
                 }
             },
-            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig", {"name": "SarCharts", "cfg": {"withGlobalRef": true}}
+            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig"
         ],
         "embedded": [{
                 "name": "Map",
