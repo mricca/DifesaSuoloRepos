@@ -141,20 +141,20 @@ module.exports = (bundles, themeEntries, paths, extractThemesPlugin, prod, publi
     devServer: {
         proxy: {
             '/rest/geostore': {
-                target: "http://localhost:8080/sar",
+                target: "http://localhost:8080/mapstore",
                 secure: false,
                 headers: {
                     host: "localhost:8080"
                 }
             },
             '/pdf': {
-                target: "http://localhost:8080/sar",
+                target: "http://localhost:8080/mapstore",
                 secure: false,
                 headers: {
                     host: "localhost:8080"
                 }
             },
-            '/sar/pdf': {
+            '/mapstore/pdf': {
                 target: "http://localhost:8080",
                 secure: false,
                 headers: {
@@ -162,7 +162,7 @@ module.exports = (bundles, themeEntries, paths, extractThemesPlugin, prod, publi
                 }
             },
             '/proxy': {
-                target: "http://localhost:8080/sar",
+                target: "http://localhost:8080/mapstore",
                 secure: false,
                 headers: {
                     host: "localhost:8080"
@@ -170,7 +170,7 @@ module.exports = (bundles, themeEntries, paths, extractThemesPlugin, prod, publi
             },
             '/docs': {
                 target: "http://localhost:8081",
-                pathRewrite: {'/docs': '/sar/docs'}
+                pathRewrite: {'/docs': '/mapstore/docs'}
             }
         }
     },
