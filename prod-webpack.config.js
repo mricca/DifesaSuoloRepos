@@ -13,33 +13,33 @@ const paths = {
 
 module.exports = require('./MapStore2/buildConfig')(
     {
-        'sar': path.join(__dirname, "js", "app"),
-        'sar-embedded': path.join(__dirname, "MapStore2", "web", "client", "product", "embedded"),
-        'sar-api': path.join(__dirname, "MapStore2", "web", "client", "product", "api")
+        'difesa_suolo': path.join(__dirname, "js", "app"),
+        'difesa_suolo-embedded': path.join(__dirname, "MapStore2", "web", "client", "product", "embedded"),
+        'difesa_suolo-api': path.join(__dirname, "MapStore2", "web", "client", "product", "api")
     },
     themeEntries,
     paths,
     extractThemesPlugin,
     true,
-    "/sar/dist/",
-    '.sar',
+    "/difesa_suolo/dist/",
+    '.difesa_suolo',
     [
         new HtmlWebpackPlugin({
             template: path.join(paths.framework, 'indexTemplate.html'),
-            chunks: ['sar'],
+            chunks: ['difesa_suolo'],
             inject: true,
             hash: true
         }),
         new HtmlWebpackPlugin({
             template: path.join(paths.framework, 'embeddedTemplate.html'),
-            chunks: ['sar-embedded'],
+            chunks: ['difesa_suolo-embedded'],
             inject: true,
             hash: true,
             filename: 'embedded.html'
         }),
         new HtmlWebpackPlugin({
             template: path.join(paths.framework, 'apiTemplate.html'),
-            chunks: ['sar-api'],
+            chunks: ['difesa_suolo-api'],
             inject: 'head',
             hash: true,
             filename: 'api.html'

@@ -13,7 +13,7 @@ const ConfigUtils = require('../MapStore2/web/client/utils/ConfigUtils');
  * ConfigUtils.setConfigProp('translationsPath', ['./MapStore2/web/client/translations', './translations']);
  */
 ConfigUtils.setConfigProp('translationsPath', './MapStore2/web/client/translations');
-ConfigUtils.setConfigProp('themePrefix', 'sar');
+ConfigUtils.setConfigProp('themePrefix', 'difesa_suolo');
 
 /**
  * Use a custom plugins configuration file with:
@@ -46,6 +46,8 @@ const appConfig = require('./appConfig');
  * const plugins = require('./plugins');
  */
 const plugins = require('../MapStore2/web/client/product/plugins');
+plugins.plugins.AttributionPlugin = require('../js/plugins/Attribution');
+plugins.plugins.HomeDescriptionPlugin = require('../js/plugins/HomeDescription');
 plugins.plugins.AboutPlugin = require('../js/plugins/About');
 plugins.plugins.SarChartsPlugin = require('../js/plugins/SarCharts');
 

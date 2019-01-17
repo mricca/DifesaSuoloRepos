@@ -37,7 +37,7 @@
     "initialState": {
       "defaultState": {
         "theme": {
-          "selectedTheme": {"id": "sar"}
+          "selectedTheme": {"id": "difesa_suolo"}
         },
         "maptype": {
             "mapType": "{context.mode === 'desktop' ? 'openlayers' : 'leaflet'}"
@@ -50,7 +50,9 @@
                 "title": "",
                 "isNew": true,
                 "autoload": false
-            }
+            },
+            "selectedService": "",
+            "services": {}
           }
         },
         "locales": {

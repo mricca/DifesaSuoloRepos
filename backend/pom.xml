@@ -2,13 +2,13 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>it.geosolutions.sar</groupId>
-        <artifactId>sar-root</artifactId>
+        <groupId>it.geosolutions.difesa_suolo</groupId>
+        <artifactId>difesa_suolo-root</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>sar-backend</artifactId>
+    <artifactId>difesa_suolo-backend</artifactId>
     <packaging>jar</packaging>
-    <name>sar - Backend Services</name>
+    <name>difesa_suolo - Backend Services</name>
     <url>http://www.geo-solutions.it</url>
 
     <properties>
