@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-        <title>sar</title>
+        <link rel="shortcut icon" href="https://www.regione.toscana.it/Toscana-theme/images/favicon.ico">
+        <title>PROGETTO SAR REGIONE TOSCANA</title>
         <style>
         body {
             margin: 0;
@@ -81,6 +82,11 @@
             70% {opacity: .75}
             100%{opacity: 0}
         }
+        #sarModal .modal-dialog{
+          width: 550px;
+          margin: auto;
+          margin-top: 100px;
+        }
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type='text/css'>
@@ -88,7 +94,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/4.6.4/ol.css" />
-        <link rel="shortcut icon" type="image/png" href="https://cdn.jslibs.mapstore2.geo-solutions.it/leaflet/favicon.ico" />
         <script src="https://maps.google.com/maps/api/js?v=3"></script>
         <!--script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.10/proj4.js"></script-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
@@ -101,12 +106,11 @@
         <link rel="stylesheet" href="MapStore2/web/client/libs/cesium-navigation/cesium-navigation.css" />
 
     </head>
-    <body>
+    <body class="sar">
         <div id="container">
             <div class="_ms2_init_spinner _ms2_init_center"><div></div></div>
             <div class="_ms2_init_text _ms2_init_center">Loading MapStore</div>
         </div>
         <script src="dist/sar.js"></script>
-
     </body>
 </html>
