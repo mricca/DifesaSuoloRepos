@@ -13,33 +13,33 @@ const paths = {
 
 module.exports = require('./MapStore2/buildConfig')(
     {
-        'difesa_suolo': path.join(__dirname, "js", "app"),
-        'difesa_suolo-embedded': path.join(__dirname, "MapStore2", "web", "client", "product", "embedded"),
-        'difesa_suolo-api': path.join(__dirname, "MapStore2", "web", "client", "product", "api")
+        'ait': path.join(__dirname, "js", "app"),
+        'ait-embedded': path.join(__dirname, "MapStore2", "web", "client", "product", "embedded"),
+        'ait-api': path.join(__dirname, "MapStore2", "web", "client", "product", "api")
     },
     themeEntries,
     paths,
     extractThemesPlugin,
     true,
-    "/difesa_suolo/dist/",
-    '.difesa_suolo',
+    "/ait/dist/",
+    '.ait',
     [
         new HtmlWebpackPlugin({
             template: path.join(paths.framework, 'indexTemplate.html'),
-            chunks: ['difesa_suolo'],
+            chunks: ['ait'],
             inject: true,
             hash: true
         }),
         new HtmlWebpackPlugin({
             template: path.join(paths.framework, 'embeddedTemplate.html'),
-            chunks: ['difesa_suolo-embedded'],
+            chunks: ['ait-embedded'],
             inject: true,
             hash: true,
             filename: 'embedded.html'
         }),
         new HtmlWebpackPlugin({
             template: path.join(paths.framework, 'apiTemplate.html'),
-            chunks: ['difesa_suolo-api'],
+            chunks: ['ait-api'],
             inject: 'head',
             hash: true,
             filename: 'api.html'

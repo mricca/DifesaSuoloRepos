@@ -1,5 +1,5 @@
 module.exports = [{
-    id: "difesa_suolo"
+    id: "ait"
 }, {
     id: "default"
 }, {

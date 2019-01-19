@@ -13,7 +13,7 @@ const ConfigUtils = require('../MapStore2/web/client/utils/ConfigUtils');
  * ConfigUtils.setConfigProp('translationsPath', ['./MapStore2/web/client/translations', './translations']);
  */
 ConfigUtils.setConfigProp('translationsPath', './MapStore2/web/client/translations');
-ConfigUtils.setConfigProp('themePrefix', 'difesa_suolo');
+ConfigUtils.setConfigProp('themePrefix', 'ait');
 
 /**
  * Use a custom plugins configuration file with:

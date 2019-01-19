@@ -1,4 +1,4 @@
-sar
+Autorità Idrica Toscana - WebGIS
 ==========
 
 Quick Start
@@ -6,7 +6,9 @@ Quick Start
 
 Clone the repository with the --recursive option to automatically clone submodules:
 
-`git clone --recursive https://github.com/mricca/sar.git`
+`git clone --recursive https://github.com/mricca/DifesaSuoloReps.git`
+
+`git checkout ait_web`
 
 Install NodeJS >= 7.10.0 , if needed, from [here](https://nodejs.org/en/download/releases/).
 
@@ -18,4 +20,4 @@ Start the development application locally:
 
 The application runs at `http://localhost:8081` afterwards.
 
-Read more on the [wiki](https://github.com/mricca/sar.git/wiki).
+Read more on the [wiki](https://github.com/mricca/DifesaSuoloReps.git/wiki).

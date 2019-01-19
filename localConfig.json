@@ -43,7 +43,7 @@
     "initialState": {
       "defaultState": {
         "theme": {
-          "selectedTheme": {"id": "difesa_suolo"}
+          "selectedTheme": {"id": "ait"}
         },
         "maptype": {
             "mapType": "{context.mode === 'desktop' ? 'openlayers' : 'leaflet'}"

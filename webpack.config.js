@@ -5,9 +5,9 @@ const extractThemesPlugin = require('./themes.js').extractThemesPlugin;
 
 module.exports = require('./buildConfig')(
     {
-        'difesa_suolo': path.join(__dirname, "js", "app"),
-        'difesa_suolo-embedded': path.join(__dirname, "MapStore2", "web", "client", "product", "embedded"),
-        'difesa_suolo-api': path.join(__dirname, "MapStore2", "web", "client", "product", "api")
+        'ait': path.join(__dirname, "js", "app"),
+        'ait-embedded': path.join(__dirname, "MapStore2", "web", "client", "product", "embedded"),
+        'ait-api': path.join(__dirname, "MapStore2", "web", "client", "product", "api")
     },
     themeEntries,
     {
@@ -19,5 +19,5 @@ module.exports = require('./buildConfig')(
     extractThemesPlugin,
     false,
     "/dist/",
-    '.difesa_suolo'
+    '.ait'
 );
