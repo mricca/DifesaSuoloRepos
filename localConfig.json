@@ -127,6 +127,13 @@
                     }
                 }
             }, {
+                "name": "Locate",
+                "override": {
+                    "Toolbar": {
+                        "alwaysVisible": true
+                    }
+                }
+            }, {
                 "name": "TOC",
                 "cfg": {
                     "activateMetedataTool": false,
@@ -223,6 +230,13 @@
                   "Toolbar": {
                     "position": 11
                   }
+                }
+            }, {
+                "name": "Locate",
+                "override": {
+                    "Toolbar": {
+                        "alwaysVisible": true
+                    }
                 }
             }, "FeatureEditor",
             {
