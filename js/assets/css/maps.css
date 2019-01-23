@@ -1,18 +1,42 @@
-
 .page-maps .ms-difesasuolo-home-description {
     background-image: url('../img/Arno_Pisa_cropped.jpg');
 }
 
 .page-maps .ms-difesasuolo-home-description {
     background-image: url('../img/Arno_Pisa_cropped.jpg');
-    height: 300px;
+    height: 200px;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
     background-position: center;
-    position: relative;s
-    top: -20px;
+    position: relative;
+    s top: -20px;
+}
+
+.page-maps .ms-lamma-footer {
+    background-color: #4E791E;
+}
+
+.page-maps .navbar-home {
+    background-color: #222B43;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #192032;
 }
 
 @media (min-width: 769px) {
@@ -22,6 +46,7 @@
         margin-bottom: 40px;
     }
 }
+
 @media (max-width: 768px) {
     div#mapstore-maptype {
         width: 100%;
@@ -29,7 +54,7 @@
 }
 
 @media (min-width: 769px) {
-     #page-maps div.theme-switcher.form-group.form-group-sm {
+    #page-maps div.theme-switcher.form-group.form-group-sm {
         width: 300px;
         margin-bottom: 40px;
         margin-left: auto;
@@ -42,7 +67,8 @@
         width: 100%;
     }
 }
-.mapstore-home-examples .carousel-caption{
-    background-color: rgba(0,0,0,0.4);
-    box-shadow: 0 0 12px rgba(0,0,0,0.4);
+
+.mapstore-home-examples .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
