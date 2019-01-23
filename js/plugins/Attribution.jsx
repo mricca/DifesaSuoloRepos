@@ -7,7 +7,7 @@
  */
 const React = require('react');
 const PropTypes = require('prop-types');
-const src = require("../assets/img/logo_rt.png");
+const src = require("../assets/img/logo-lamma-transp.png");
 const assign = require('object-assign');
 
 class Attribution extends React.Component {
@@ -36,8 +36,8 @@ module.exports = {
         NavMenu: {
             tool: (props) => ({
                 position: 0,
-                label: props.label || 'Regione Toscana',
-                href: props.href || 'http://www.regione.toscana.it/',
+                label: props.label || 'Consorzio LaMMA',
+                href: props.href || 'http://www.lamma.rete.toscana.it/',
                 img: props.src && <img className="customer-logo" src={props.src} height="40" /> || <img className="customer-logo" src={src} height="40" />,
                 logo: true
             })
