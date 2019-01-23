@@ -49,6 +49,7 @@ const plugins = require('../MapStore2/web/client/product/plugins');
 plugins.plugins.AttributionPlugin = require('../js/plugins/Attribution');
 plugins.plugins.HomeDescriptionPlugin = require('../js/plugins/HomeDescription');
 plugins.plugins.AboutPlugin = require('../js/plugins/About');
-plugins.plugins.SarChartsPlugin = require('../js/plugins/SarCharts');
+plugins.plugins.FooterPlugin = require('../js/plugins/Footer');
+delete plugins.plugins.MapSearchPlugin;
 
 require('../MapStore2/web/client/product/main')(appConfig, plugins);
