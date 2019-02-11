@@ -50,6 +50,6 @@ plugins.plugins.AttributionPlugin = require('../js/plugins/Attribution');
 plugins.plugins.HomeDescriptionPlugin = require('../js/plugins/HomeDescription');
 plugins.plugins.AboutPlugin = require('../js/plugins/About');
 plugins.plugins.FooterPlugin = require('../js/plugins/Footer');
-delete plugins.plugins.MapSearchPlugin;
+plugins.plugins.AitHomePlugin = require('../js/plugins/AitHome');
 
 require('../MapStore2/web/client/product/main')(appConfig, plugins);

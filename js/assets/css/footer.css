@@ -17,3 +17,19 @@
     color: #FFFFFF !important;
     /* border-top: 1px solid #4E791E; */
 }
+.site-footer {
+  *zoom: 1;
+  min-height: 55px;
+  color: #ffffff;
+  background: #4e791e;
+  padding: 20px 0;
+}
+.footer-links {
+    margin-left: 0;
+}
+.footer-links, .attribution {
+    float: left;
+    margin-left: 20px;
+    width: 460px;
+    margin-bottom: 20px;
+}

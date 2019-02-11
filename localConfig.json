@@ -189,7 +189,8 @@
                 "externalCookieUrl" : "",
                 "declineUrl" : "http://www.google.com"
               }
-            }
+            },
+            "FeedbackMask"
         ],
         "desktop": [ "Details",
           {
@@ -217,7 +218,7 @@
                 }
               }
             }
-          }, "AutoMapUpdate", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "FloatingLegend",
+          }, "AutoMapUpdate", "DrawerMenu", "Version", "Notifications", "BackgroundSelector",
             {
                 "name": "Identify",
                 "cfg": {
@@ -266,7 +267,7 @@
             "TOCItemsSettings",
             "Tutorial", "MapFooter", {
                 "name": "Measure"
-            }, "Print", "ShapeFile", {
+            }, "Print", "ShapeFile", "Timeline", "Playback", {
                 "name": "Settings",
                 "cfg": {
                     "wrap": true
@@ -337,7 +338,10 @@
                 "declineUrl" : "http://www.google.com"
                 }
             },
-            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig"
+            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig",
+            "FloatingLegend",
+            "FeedbackMask",
+            "StyleEditor"
         ],
         "embedded": [{
                 "name": "Map",
@@ -446,7 +450,8 @@
                         "alwaysVisible": true
                     }
                 }
-            }, "SarCharts"
+            },
+            "FeedbackMask"
         ],
         "common": [{
             "name": "OmniBar",
@@ -454,9 +459,10 @@
                 "className": "navbar shadow navbar-home"
             }
         }, "ManagerMenu", "Login","Language", "NavMenu", "Attribution", "ScrollTop", "Notifications"],
-        "maps": ["HomeDescription", "MapSearch", "CreateNewMap",
-
-          {
+        "maps": ["HomeDescription", "CreateNewMap",
+        {
+          "name": "AitHome"
+        },{
             "name": "Maps",
             "cfg": {
               "mapsOptions": {
@@ -478,7 +484,7 @@
                 "containerPosition": "header",
                 "className": "navbar shadow navbar-home"
             }
-        }, "Login", "Language", "NavMenu", "Attribution", {
+        }, "Login", "Language", "NavMenu", "Attribution", "Home", {
           "name": "DashboardEditor",
           "cfg": {
              "catalog": {
@@ -505,7 +511,13 @@
                 "containerPosition": "header",
                 "preset": "dashboard_tutorial"
             }
+        },
+        {
+            "name": "FeedbackMask",
+            "cfg": {
+                "containerPosition": "header"
+            }
         }],
-        "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager"]
+        "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
     }
 }

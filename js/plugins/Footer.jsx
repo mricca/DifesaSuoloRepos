@@ -9,7 +9,12 @@
 const React = require('react');
 const PropTypes = require('prop-types');
 const {Jumbotron, Grid, Row, Col} = require('react-bootstrap');
-const src = require("../assets/img/logo-lamma-transp.png");
+const srcLamma = require("../assets/img/logo-lamma-transp.png");
+const srcCnr = require("../assets/img/logo_cnr.png");
+const srcRt = require("../assets/img/logo_regione.png");
+// const srcLamma = require("../assets/img/logo_lamma_print.png");
+// const srcCnr = require("../assets/img/logo_cnr_print.gif");
+// const srcRt = require("../assets/img/logo_regione_print.gif");
 
 class Footer extends React.Component {
     static propTypes = {
@@ -25,24 +30,27 @@ class Footer extends React.Component {
     };
     render() {
         return (
-            <Jumbotron className={this.props.className} style={this.props.style}>
-            <Grid>
-                <Row>
-                    <Col xs={12} className="text-center">
-                        <div>
-                            <a target="_blank" href="http://www.lamma.rete.toscana.it/">
-                                <img src={src} width="140" title="Consorzio LaMMA" alt="Consorzio LaMMA" />
-                            </a>
+            <footer className="site-footer">
+                <Grid>
+                   <div className="container">
+                       <nav className="footer-links">
+                           <ul className="unstyled">
+                               <li><a href="#">Informazioni</a></li>
+                           </ul>
+                        </nav>
+                        <div className="attribution">
+                            <a href="http://www.lamma.rete.toscana.it/" target="_blank"><img src={srcLamma}/></a>
+                            <a href="http://www.ibimet.cnr.it/" target="_blank"><img style={{margin: "0px 20px"}} src={srcCnr}/></a>
+                            <a href="http://www.regione.toscana.it/" target="_blank"><img src={srcRt}/></a>
                         </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={12} className="text-center">
-                        <small>GeoSolutions S.a.s. | Via Poggio alle Viti, 1187 - 55054 Massarosa (Lucca) - Italy info@geo-solutions.it | Tel: +39 0584 962313 | Fax: +39 0584 1660272</small>
-                    </Col>
-                </Row>
-            </Grid>
-        </Jumbotron>
+                        <Row>
+                            <Col xs={12} className="text-center">
+                                <small>Consorzio LaMMA | Via Madonna del Piano n.10 - Edificio D - Piano Primo - 50019 Sesto Fiorentino (Fi) - Italy info@lamma.rete.toscana.it | Tel. +39 055 44 830.1 | Fax +39 055 44 40 83</small>
+                            </Col>
+                        </Row>
+                    </div>
+                </Grid>
+            </footer>
         );
     }
 }

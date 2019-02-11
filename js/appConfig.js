@@ -5,6 +5,8 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
+const DateAPI = require('./utils/ManageDateUtils');
+const moment = require('moment');
 
 module.exports = {
     pages: [{
@@ -48,6 +50,11 @@ module.exports = {
         defaultState: {
             mapInfo: {enabled: true, infoFormat: 'text/html'},
             mousePosition: {enabled: false},
+            aitHome: {
+                fromData: new Date(DateAPI.calculateDateFromKey("1", moment().subtract(1, 'day')._d).fromData),
+                toData: new Date(DateAPI.calculateDateFromKey("1", moment().subtract(1, 'day')._d).toData),
+                periodType: "1"
+            },
             controls: {
                 help: {
                     enabled: false
