@@ -51,5 +51,7 @@ plugins.plugins.HomeDescriptionPlugin = require('../js/plugins/HomeDescription')
 plugins.plugins.AboutPlugin = require('../js/plugins/About');
 plugins.plugins.FooterPlugin = require('../js/plugins/Footer');
 plugins.plugins.AitHomePlugin = require('../js/plugins/AitHome');
+plugins.plugins.ChangePeriodAitPlugin = require('../js/plugins/ChangePeriodAit');
+plugins.plugins.InfoChartPlugin = require('../js/plugins/InfoChart');
 
 require('../MapStore2/web/client/product/main')(appConfig, plugins);

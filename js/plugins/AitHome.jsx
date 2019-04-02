@@ -29,6 +29,7 @@ class AitHome extends React.Component {
     };
 
     static defaultProps = {
+        id: "ait-home-card",
         showModal: false,
         imgSrc: "",
         onClickThumbnail: () => {},
@@ -37,14 +38,14 @@ class AitHome extends React.Component {
 
     render() {
         return (
-            <div style={{marginTop: "50px"}}>
+            <div id={this.props.id} style={{marginTop: "0px"}}>
                 <Grid>
                     <Row className="show-grid">
                         <Col sm={3}>
                             <Thumbnail className="gridcard" style={style}>
-                                <h4>
+                                <h5>
                                     <strong>Cumulato Precipitazione ultimi 30 gg (mm)</strong>
-                                </h4>
+                                </h5>
                                 <a onClick={() => this.props.onClickThumbnail(true, "https://geoportale.lamma.rete.toscana.it/assets/img/Prec_ultimi_30gg.png")}>
                                     <AitHomeModal
                                         title={"Cumulato Precipitazione ultimi 30 gg (mm)"}
@@ -58,9 +59,9 @@ class AitHome extends React.Component {
                         </Col>
                         <Col sm={3}>
                             <Thumbnail className="gridcard" style={style}>
-                                <h4>
+                                <h5>
                                     <strong>Anomalia Prec. ultimi 90gg (%)</strong>
-                                </h4>
+                                </h5>
                                 <a onClick={() => this.props.onClickThumbnail(true, "https://geoportale.lamma.rete.toscana.it/assets/img/Anomalia_Prec_ultimi_90gg.png")}>
                                     <AitHomeModal
                                         title={"Anomalia Prec. ultimi 90gg (%)"}
@@ -74,9 +75,9 @@ class AitHome extends React.Component {
                         </Col>
                         <Col sm={3}>
                             <Thumbnail className="gridcard" style={style}>
-                                <h4>
+                                <h5>
                                     <strong>Anomalia Prec. dal 1 ottobre(%)</strong>
-                                </h4>
+                                </h5>
                                 <a onClick={() => this.props.onClickThumbnail(true, "https://geoportale.lamma.rete.toscana.it/assets/img/Anomalia_Prec_bilancioidrico.png")}>
                                     <AitHomeModal
                                         title={"Anomalia Prec. Bilancio Idrico dal 1 ottobre(%)"}
@@ -90,9 +91,9 @@ class AitHome extends React.Component {
                         </Col>
                         <Col sm={3}>
                             <Thumbnail className="gridcard" style={style}>
-                                <h4>
+                                <h5>
                                     <strong>Anomalia Temperatura ultimi 30 gg (°C)</strong>
-                                </h4>
+                                </h5>
                                 <a onClick={() => this.props.onClickThumbnail(true, "https://geoportale.lamma.rete.toscana.it/assets/img/Anomalia_Tmed_ultimi_30gg.png")}>
                                     <AitHomeModal
                                         title={"Anomalia Temperatura ultimi 30 gg (°C)"}
@@ -106,6 +107,9 @@ class AitHome extends React.Component {
                         </Col>
                     </Row>
                 </Grid>
+                <div className="page-header text-center">
+                    <h3>Mappe dinamiche di monitoraggio</h3>
+                </div>
             </div>
         );
     }

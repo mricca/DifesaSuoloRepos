@@ -8,7 +8,7 @@
 
 const React = require('react');
 const PropTypes = require('prop-types');
-const {Jumbotron, Grid, Row, Col} = require('react-bootstrap');
+const {Grid, Row, Col} = require('react-bootstrap');
 const srcLamma = require("../assets/img/logo-lamma-transp.png");
 const srcCnr = require("../assets/img/logo_cnr.png");
 const srcRt = require("../assets/img/logo_regione.png");
@@ -33,12 +33,7 @@ class Footer extends React.Component {
             <footer className="site-footer">
                 <Grid>
                    <div className="container">
-                       <nav className="footer-links">
-                           <ul className="unstyled">
-                               <li><a href="#">Informazioni</a></li>
-                           </ul>
-                        </nav>
-                        <div className="attribution">
+                        <div className="ait-attribution">
                             <a href="http://www.lamma.rete.toscana.it/" target="_blank"><img src={srcLamma}/></a>
                             <a href="http://www.ibimet.cnr.it/" target="_blank"><img style={{margin: "0px 20px"}} src={srcCnr}/></a>
                             <a href="http://www.regione.toscana.it/" target="_blank"><img src={srcRt}/></a>

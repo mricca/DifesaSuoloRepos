@@ -10,10 +10,10 @@ const MAP_YEAR_CHANGED = 'MAP_YEAR_CHANGED';
 const MAP_PERIOD_CHANGED = 'MAP_PERIOD_CHANGED';
 const CLICK_THUMBNAIL_HOME = 'CLICK_THUMBNAIL_HOME';
 
-function changeYear(hidrologicYear) {
+function changeYear(toData) {
     return {
         type: MAP_YEAR_CHANGED,
-        hidrologicYear
+        toData
     };
 }
 

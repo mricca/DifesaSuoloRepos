@@ -28,7 +28,7 @@ module.exports = {
             name: 'about',
             position: 1500,
             text: <Message msgId="about_title"/>,
-        icon: <Glyphicon glyph="info-sign"/>,
+            icon: <Glyphicon glyph="info-sign"/>,
             action: toggleControl.bind(null, 'about', null),
             priority: 1,
             doNotHide: true

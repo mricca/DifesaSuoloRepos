@@ -165,6 +165,7 @@
             }, {
                 "name": "Search",
                 "cfg": {
+                  "showOptions": false,
                   "withToggle": ["max-width: 768px", "min-width: 768px"]
                 }
             }, {
@@ -342,7 +343,7 @@
                 "declineUrl" : "http://www.google.com"
                 }
             },
-            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "GlobeViewSwitcher", "SearchServicesConfig", "WidgetsBuilder", "Widgets",
+            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "GlobeViewSwitcher", "SearchServicesConfig", "WidgetsBuilder", "Widgets", "WidgetsTray",
             "FloatingLegend",
             "FeedbackMask",
             "StyleEditor"

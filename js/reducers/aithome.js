@@ -13,6 +13,8 @@ const defaultState = {
     periodType: "1",
     fromData: new Date(DateAPI.calculateDateFromKey("1").fromData),
     toData: new Date(DateAPI.calculateDateFromKey("1").toData),
+    fromDataReal: new Date(DateAPI.calculateDateFromKeyReal("1").fromData),
+    toDataReal: new Date(DateAPI.calculateDateFromKeyReal("1").toData),
     showModal: false,
     imgSrc: "",
     map: "/opt/ait/ait.map"
@@ -22,8 +24,10 @@ function aithome(state = defaultState, action) {
     switch (action.type) {
         case MAP_YEAR_CHANGED:
             return {
-                fromData: new Date(DateAPI.calculateDateFromKey(state.periodType, action.hidrologicYear).fromData),
-                toData: new Date(DateAPI.calculateDateFromKey(state.periodType, action.hidrologicYear).toData),
+                fromData: new Date(DateAPI.calculateDateFromKey(state.periodType, action.toData).fromData),
+                toData: new Date(DateAPI.calculateDateFromKey(state.periodType, action.toData).toData),
+                fromDataReal: new Date(DateAPI.calculateDateFromKeyReal(state.periodType, action.toData).fromData),
+                toDataReal: new Date(DateAPI.calculateDateFromKeyReal(state.periodType, action.toData).toData),
                 periodType: state.periodType,
                 showModal: false,
                 imgSrc: "",
@@ -33,6 +37,8 @@ function aithome(state = defaultState, action) {
             return {
                 fromData: new Date(DateAPI.calculateDateFromKey(action.periodType, state.toData).fromData),
                 toData: new Date(DateAPI.calculateDateFromKey(action.periodType, state.toData).toData),
+                fromDataReal: new Date(DateAPI.calculateDateFromKeyReal(action.periodType, state.toDataReal).fromData),
+                toDataReal: new Date(DateAPI.calculateDateFromKeyReal(action.periodType, state.toDataReal).toData),
                 periodType: action.periodType,
                 showModal: false,
                 imgSrc: "",
@@ -42,6 +48,8 @@ function aithome(state = defaultState, action) {
             return {
                 fromData: new Date(DateAPI.calculateDateFromKey(state.periodType, state.toData).fromData),
                 toData: new Date(DateAPI.calculateDateFromKey(state.periodType, state.toData).toData),
+                fromDataReal: new Date(DateAPI.calculateDateFromKeyReal(state.periodType, state.toDataReal).fromData),
+                toDataReal: new Date(DateAPI.calculateDateFromKeyReal(state.periodType, state.toDataReal).toData),
                 periodType: state.periodType,
                 showModal: action.showModal,
                 imgSrc: action.imgSrc,

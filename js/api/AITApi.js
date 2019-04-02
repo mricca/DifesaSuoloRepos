@@ -21,8 +21,8 @@ const DEFAULT_URL_AITSTATS = 'geoportale.lamma.rete.toscana.it/cgi-bin/ait_app/a
  * API for local config
  */
 const Api = {
-    aitchart: function(coords, options) {
-        var params = assign({lat: coords.lat, lng: coords.lng}, options || {});
+    aitchart: function(data, options) {
+        var params = assign({lat: data.latlng.lat, lng: data.latlng.lng, toData: data.toData, fromData: data.fromData, variable: data.variable}, options || {});
         var url = urlUtil.format({
             protocol: window.location.hostname === 'localhost' ? 'https:' : window.location.protocol,
             host: DEFAULT_URL_AITCHART,

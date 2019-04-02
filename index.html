@@ -141,21 +141,37 @@
                     var gid = e.relatedTarget.dataset.value;
                     var title = e.relatedTarget.title;
                     var variableType =  e.relatedTarget.innerHTML;
-                    var toDate = document.getElementById("mapstore-changedate-map").getElementsByClassName("rw-datetimepicker rw-widget")[0].children[0].value;
-                    var fromDate = document.getElementById("mapstore-changedate-map").getElementsByClassName("form-control")[0].value;
-                    var toDateReal = moment(toDate, "DD MMMM, YYYY").format('YYYY-MM-DD');
+
+                    // var toDate = document.getElementById("ms-changeperiodait-action").getElementsByClassName("rw-datetimepicker rw-widget")[0].children[0].value;
+                    // var periodo =  document.getElementById("period1").getElementsByClassName("rw-list-option rw-state-selected");
+                    var periodo =  document.getElementById("period1");
+                    var fromDate = periodo.innerText;
+                    // var toDateReal = moment(toDate, "DD MMMM, YYYY").format('YYYY-MM-DD');
+                    var toDate = document.getElementById("to-data-statistics").innerText;
+                    // var fromDate = document.getElementById("from-data-statistics").innerText;
+                    var toDateReal = moment(toDate, "DD/MM/YYYY").format('YYYY-MM-DD');
+
                     var fromDateReal;
-                    switch (fromDate) {
-                        case '1': {
+                    var switchCase = parseInt(fromDate.substring(0, 2).trim());
+                    switch (switchCase) {
+                        case 1: {
                             fromDateReal = moment(toDateReal).clone().subtract(1, 'month').format('YYYY-MM-DD');
                             break;
                         }
-                        case '2': {
+                        case 3: {
                             fromDateReal = moment(toDateReal).clone().subtract(3, 'month').format('YYYY-MM-DD');
                             break;
                         }
-                        case '3': {
+                        case 4: {
+                            fromDateReal = moment(toDateReal).clone().subtract(4, 'month').format('YYYY-MM-DD');
+                            break;
+                        }
+                        case 6: {
                             fromDateReal = moment(toDateReal).clone().subtract(6, 'month').format('YYYY-MM-DD');
+                            break;
+                        }
+                        case 12: {
+                            fromDateReal = moment(toDateReal).clone().subtract(12, 'month').format('YYYY-MM-DD');
                             break;
                         }
                         default: {

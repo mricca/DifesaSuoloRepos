@@ -5,6 +5,7 @@
             "http://geoportale.lamma.rete.toscana.it/geoserver_sar",
             "https://geoportale.lamma.rete.toscana.it/geoserver_sar",
             "https://geoportale.lamma.rete.toscana.it/cgi-bin/sar_app/sarCharts.py",
+            "https://geoportale.lamma.rete.toscana.it/cgi-bin/ait_app/aitchart.py",
             "https://nominatim.openstreetmap.org",
             "http://spatialreference.org/ref/epsg/3003/proj4/"
         ]
@@ -66,22 +67,6 @@
             "it": {
               "code": "it-IT",
               "description": "Italiano"
-            },
-            "en": {
-              "code": "en-US",
-              "description": "English"
-            },
-            "fr": {
-              "code": "fr-FR",
-              "description": "Français"
-            },
-            "de": {
-              "code": "de-DE",
-              "description": "Deutsch"
-            },
-            "es": {
-              "code": "es-ES",
-              "description": "Español"
             }
           }
         }
@@ -160,6 +145,7 @@
             }, {
                 "name": "Search",
                 "cfg": {
+                  "showOptions": false,
                   "withToggle": ["max-width: 768px", "min-width: 768px"]
                 }
             }, {
@@ -218,7 +204,7 @@
                 }
               }
             }
-          }, "AutoMapUpdate", "DrawerMenu", "Version", "Notifications", "BackgroundSelector",
+          }, "AutoMapUpdate", "HelpLink", "DrawerMenu", "Version", "Notifications", "BackgroundSelector",
             {
                 "name": "Identify",
                 "cfg": {
@@ -228,7 +214,8 @@
                 },
                 "override": {
                   "Toolbar": {
-                    "position": 11
+                    "position": 11,
+                    "alwaysVisible": true
                   }
                 }
             },
@@ -304,6 +291,13 @@
                 }
             },
             "ScaleBox", {
+              "name":"InfoChart",
+              "override": {
+                "Toolbar": {
+                  "alwaysVisible": true
+                }
+              }
+            }, {
               "name":"ZoomAll",
               "override": {
                 "Toolbar": {
@@ -341,7 +335,13 @@
             "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig",
             "FloatingLegend",
             "FeedbackMask",
-            "StyleEditor"
+            "StyleEditor",
+            {
+              "name": "ChangePeriodAit",
+              "cfg" : {
+                "id": "mapstore-changedate-map"
+              }
+            }
         ],
         "embedded": [{
                 "name": "Map",
@@ -467,7 +467,14 @@
             "cfg": {
               "mapsOptions": {
                 "start": 0,
-                "limit": 12
+                "limit": 2
+              },
+              "colProps": {
+                  "xs": 12,
+                  "sm": 12,
+                  "lg": 12,
+                  "md": 12,
+                  "className": "ms-map-card-col"
               },
               "fluid": true
             }

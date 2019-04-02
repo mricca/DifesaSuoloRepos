@@ -20,11 +20,11 @@ module.exports = {
     }, {
         name: "mapviewer",
         path: "/viewer/:mapType/:mapId",
-        component: require('../MapStore2/web/client/product/pages/MapViewer')
+        component: require('./pages/MapViewer')
     }, {
         name: "mapviewer",
         path: "/viewer/:mapId",
-        component: require('../MapStore2/web/client/product/pages/MapViewer')
+        component: require('./pages/MapViewer')
     }, {
         name: "manager",
         path: "/manager",
@@ -50,9 +50,11 @@ module.exports = {
         defaultState: {
             mapInfo: {enabled: true, infoFormat: 'text/html'},
             mousePosition: {enabled: false},
-            aitHome: {
+            aithome: {
                 fromData: new Date(DateAPI.calculateDateFromKey("1", moment().subtract(1, 'day')._d).fromData),
                 toData: new Date(DateAPI.calculateDateFromKey("1", moment().subtract(1, 'day')._d).toData),
+                fromDataReal: new Date(DateAPI.calculateDateFromKeyReal("1", moment().subtract(1, 'day')._d).fromData),
+                toDataReal: new Date(DateAPI.calculateDateFromKeyReal("1", moment().subtract(1, 'day')._d).toData),
                 periodType: "1"
             },
             controls: {
@@ -85,6 +87,9 @@ module.exports = {
                 cookie: {
                     enabled: false,
                     seeMore: false
+                },
+                chartinfo: {
+                    enabled: false
                 }
             }
         },

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018, Riccardo Mari - CNR-Ibimet - Consorzio LaMMA.
+ * Copyright 2019, Riccardo Mari - CNR-Ibimet - Consorzio LaMMA.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
