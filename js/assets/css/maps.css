@@ -5,7 +5,7 @@
 
 .page-maps .ms-difesasuolo-home-description {
     background-image: url('../img/Arno_Pisa_cropped.jpg');
-    height: 300px;
+    height: 350px;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -13,6 +13,11 @@
     background-position: center;
     position: relative;s
     top: -20px;
+    margin-bottom: -60px;
+}
+
+.page-maps .ms-lamma-footer {
+    background-color: #DEDEDE;
 }
 
 @media (min-width: 769px) {

@@ -23,14 +23,7 @@ class About extends React.Component {
             }} className="container-fluid">
             <Row className="show-grid">
                 <Col ms={12} msPush={12}>
-                    <h2>Attività di monitoraggio del rischio idrogeologico del territorio</h2>
-                    <p>
-                        Il presente lavoro è stato svolto nell'ambito dell' accordo "Attività di monitoraggio del rischio idrogeologico nel territorio della regione Toscana" stipulato il 06 dicembre 2017, ai sensi dell'art. 15 della legge 7 agosto 1990, n. 241, e dell'art. 6 della legge 24 febbraio 1992, n. 225, tra la Regione Toscana, il Dipartimento della Protezione Civile della Presidenza del Consiglio dei Ministri e il Dipartimento di Scienze della Terra dell'Università degli Studi di Firenze.
-                    </p>
-                    <p>
-                        L'obiettivo principale delle attività è quello di fornire informazioni utili alla formulazione di un quadro sinottico dei fenomeni di deformazione del suolo sull'intero territorio regionale, a supporto delle Regioni, dei Comuni e degli Enti Territoriali coinvolti nelle attività per la difesa del territorio e di gestione dei rischi. A tal scopo è stata generata una banca dati rappresentativa del territorio regionale contenente le misure dei movimenti del terreno ottenute mediante interferometria SAR (Synthetic Aperture Radar) satellitare e resa fruibile attraverso il Geoportale pubblico del Consorzio LaMMA.
-                    </p>
-
+                    <h2>Raccolta Banche dati Direzione Difesa del Suolo e Protezione Civile della Regione Toscana</h2>
                 </Col>
             </Row>
             <hr></hr>
