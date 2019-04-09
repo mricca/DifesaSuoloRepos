@@ -10,7 +10,7 @@
         ]
     },
     "geoStoreUrl": "rest/geostore/",
-    "printUrl": "/geoserver_sar/pdf/info.json",
+    "printUrl": "https://geoportale.lamma.rete.toscana.it/geoserver_sar/pdf/info.json",
     "bingApiKey": "AhuXBu7ipR1gNbBfXhtUAyCZ6rkC5PkWpxs2MnMRZ1ZupxQfivjLCch22ozKSCAn",
     "mapquestApiKey": "__API_KEY_MAPQUEST__",
     "initialMapFilter": "",
@@ -29,6 +29,10 @@
     "authenticationRules": [{
         "urlPattern": ".*geostore.*",
         "method": "bearer"
+    }, {
+        "urlPattern": "\\/geoserver_sar/.*",
+        "authkeyParamName": "authkey",
+        "method": "authkey"
     }],
     "monitorState": [
       {"name": "routing", "path": "routing.location.pathname"},
@@ -160,6 +164,7 @@
             }, {
                 "name": "Search",
                 "cfg": {
+                  "showOptions": true,
                   "withToggle": ["max-width: 768px", "min-width: 768px"]
                 }
             }, {
@@ -183,13 +188,16 @@
                     }
                 }
             }, "Login",
-            "OmniBar", "BurgerMenu", "Expander", {
+            "OmniBar", "BurgerMenu", "Expander", "GlobeViewSwitcher", {
               "name": "Cookie",
               "cfg": {
                 "externalCookieUrl" : "",
                 "declineUrl" : "http://www.google.com"
               }
-            }
+            }, {"name": "SarCharts", "cfg": {"withGlobalRef": true}}, {
+              "name": "About",
+              "showIn": ["BurgerMenu"]
+            }, "FeedbackMask"
         ],
         "desktop": [ "Details",
           {
@@ -217,7 +225,7 @@
                 }
               }
             }
-          }, "AutoMapUpdate", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "FloatingLegend",
+          }, "AutoMapUpdate", "Share", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "FloatingLegend", "Annotations",
             {
                 "name": "Identify",
                 "cfg": {
@@ -239,6 +247,7 @@
                     }
                 }
             }, "Home", "FeatureEditor",
+            "WFSDownload",
             {
               "name": "QueryPanel",
               "cfg": {
@@ -266,7 +275,7 @@
             "TOCItemsSettings",
             "Tutorial", "MapFooter", {
                 "name": "Measure"
-            }, "Print", "ShapeFile", {
+            }, "Print", "ShapeFile", "Timeline", "Playback", {
                 "name": "Settings",
                 "cfg": {
                     "wrap": true
@@ -337,7 +346,24 @@
                 "declineUrl" : "http://www.google.com"
                 }
             },
-            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig"
+            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "GlobeViewSwitcher", "SearchServicesConfig", "WidgetsBuilder", "Widgets", "WidgetsTray", {"name": "SarCharts", "cfg": {"withGlobalRef": true}} ,
+	    "FloatingLegend", {
+            "name": "ShowSarReport",
+            "hideFrom": "{state('mapId') !== '14' ? 'Toolbar' : ''}"
+          },
+            "FeedbackMask",
+                  {
+                      "name": "StyleEditor",
+                      "cfg": {
+                          "styleService": {
+                              "baseUrl": "/geoserver_sar/",
+                              "availableUrls": [
+                                  "https://geoportale.lamma.rete.toscana.it/geoserver_sar/",
+                                  "https://geoportale.lamma.rete.toscana.it/geoserver_ds/"
+                              ]
+                          }
+                      }
+                  }
         ],
         "embedded": [{
                 "name": "Map",
@@ -423,6 +449,7 @@
             }, {
                 "name": "Search",
                 "cfg": {
+                  "showOptions": true,
                   "withToggle": ["max-width: 768px", "min-width: 768px"]
                 }
             }, {
@@ -446,7 +473,7 @@
                         "alwaysVisible": true
                     }
                 }
-            }, "SarCharts"
+            }, "FeedbackMask", {"name": "SarCharts", "cfg": {"withGlobalRef": true}}
         ],
         "common": [{
             "name": "OmniBar",
@@ -454,8 +481,7 @@
                 "className": "navbar shadow navbar-home"
             }
         }, "ManagerMenu", "Login","Language", "NavMenu", "Attribution", "ScrollTop", "Notifications"],
-        "maps": ["HomeDescription", "MapSearch", "CreateNewMap",
-
+        "maps": ["HomeDescription", "MapSearch", "CreateNewMap", "FeaturedMaps", "ContentTabs",
           {
             "name": "Maps",
             "cfg": {
@@ -466,6 +492,15 @@
               "fluid": true
             }
           }, {
+            "name": "Dashboards",
+            "cfg": {
+              "mapsOptions": {
+                "start": 0,
+                "limit": 12
+              },
+              "fluid": true
+            }
+          }, "Footer", {
           "name": "Cookie",
           "cfg": {
             "externalCookieUrl" : "",
@@ -478,13 +513,13 @@
                 "containerPosition": "header",
                 "className": "navbar shadow navbar-home"
             }
-        }, "Login", "Language", "NavMenu", "Attribution", {
+        }, "Login", "Language", "NavMenu", "Attribution", "Home", {
           "name": "DashboardEditor",
           "cfg": {
              "catalog": {
-              "url": "https://demo.geo-solutions.it/geoserver/csw",
-              "type": "csw",
-              "title": "Demo CSW Service",
+              "url": "https://geoportale.lamma.rete.toscana.it/geoserver_laghi/wms",
+              "type": "wms",
+              "title": "Laghetti Geoserver",
               "autoload": true
             },
             "containerPosition": "columns"
@@ -505,7 +540,13 @@
                 "containerPosition": "header",
                 "preset": "dashboard_tutorial"
             }
+        },
+        {
+            "name": "FeedbackMask",
+            "cfg": {
+                "containerPosition": "header"
+            }
         }],
-        "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager"]
+        "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
     }
 }

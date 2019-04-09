@@ -4,7 +4,7 @@
         "useCORS": ["https://nominatim.openstreetmap.org", "http://spatialreference.org/ref/epsg/3003/proj4/"]
     },
     "geoStoreUrl": "rest/geostore/",
-    "printUrl": "http://geoportale.lamma.rete.toscana.it/geoserver_sar/pdf/info.json",
+    "printUrl": "https://geoportale.lamma.rete.toscana.it/geoserver_sar/pdf/info.json",
     "bingApiKey": "AhuXBu7ipR1gNbBfXhtUAyCZ6rkC5PkWpxs2MnMRZ1ZupxQfivjLCch22ozKSCAn",
     "mapquestApiKey": "__API_KEY_MAPQUEST__",
     "initialMapFilter": "",
@@ -173,6 +173,7 @@
             }, {
                 "name": "Search",
                 "cfg": {
+                  "showOptions": true,
                   "withToggle": ["max-width: 768px", "min-width: 768px"]
                 }
             }, {
@@ -202,7 +203,8 @@
                 "externalCookieUrl" : "",
                 "declineUrl" : "http://www.google.com"
               }
-            }
+            },
+            "FeedbackMask"
         ],
         "desktop": [ "Details",
           {
@@ -280,7 +282,7 @@
             "TOCItemsSettings",
             "Tutorial", "MapFooter", {
                 "name": "Measure"
-            }, "Print", "ShapeFile", {
+            }, "Print", "ShapeFile", "Timeline", "Playback", {
                 "name": "Settings",
                 "cfg": {
                     "wrap": true
@@ -351,8 +353,10 @@
                 "declineUrl" : "http://www.google.com"
                 }
             },
-            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "GlobeViewSwitcher", "SearchServicesConfig", "WidgetsBuilder", "Widgets",
-            "FloatingLegend"
+            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "GlobeViewSwitcher", "SearchServicesConfig", "WidgetsBuilder", "Widgets", "WidgetsTray",
+            "FloatingLegend",
+            "FeedbackMask",
+            "StyleEditor"
         ],
         "embedded": [{
                 "name": "Map",
@@ -438,6 +442,7 @@
             }, {
                 "name": "Search",
                 "cfg": {
+                  "showOptions": true,
                   "withToggle": ["max-width: 768px", "min-width: 768px"]
                 }
             }, {
@@ -461,7 +466,8 @@
                         "alwaysVisible": true
                     }
                 }
-            }
+            },
+            "FeedbackMask"
         ],
         "common": [{
             "name": "OmniBar",
@@ -528,6 +534,12 @@
                 "allowClicksThruHole": false,
                 "containerPosition": "header",
                 "preset": "dashboard_tutorial"
+            }
+        },
+        {
+            "name": "FeedbackMask",
+            "cfg": {
+                "containerPosition": "header"
             }
         }],
         "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
