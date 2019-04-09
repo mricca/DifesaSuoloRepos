@@ -24,7 +24,7 @@ const Api = {
             options || {}
         );
         const url = urlUtil.format({
-            protocol: "http",
+            protocol: "https",
             host: DEFAULT_URL,
             query: params
         });
