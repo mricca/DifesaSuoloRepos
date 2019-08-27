@@ -52,5 +52,6 @@ plugins.plugins.AboutPlugin = require('../js/plugins/About');
 plugins.plugins.FooterPlugin = require('../js/plugins/Footer');
 plugins.plugins.SarChartsPlugin = require('../js/plugins/SarCharts');
 plugins.plugins.ShowSarReportPlugin = require('../js/plugins/ShowSarReport');
+plugins.plugins.HelpLinkSarPlugin = require('../js/plugins/HelpLinkSar');
 
 require('../MapStore2/web/client/product/main')(appConfig, plugins);
