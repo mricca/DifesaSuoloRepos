@@ -225,7 +225,7 @@
                 }
               }
             }
-          }, "AutoMapUpdate", "Share", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "FloatingLegend", "Annotations",
+          }, "AutoMapUpdate", {"name": "HelpLinkSar", "hideFrom": "{state('mapId') !== '14' ? 'BurgerMenu' : ''}"}, "Share", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "FloatingLegend", "Annotations",
             {
                 "name": "Identify",
                 "cfg": {
