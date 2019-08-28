@@ -4,9 +4,13 @@
         "useCORS": [
             "http://geoportale.lamma.rete.toscana.it/geoserver_sar",
             "https://geoportale.lamma.rete.toscana.it/geoserver_sar",
+			"https://geoportale.lamma.rete.toscana.it/geoserver_ds",
+			"http://geoportale.lamma.rete.toscana.it/geoserver_ds",
             "https://geoportale.lamma.rete.toscana.it/cgi-bin/sar_app/sarCharts.py",
             "https://nominatim.openstreetmap.org",
-            "http://spatialreference.org/ref/epsg/3003/proj4/"
+            "https://epsg.io/3003.proj4",
+            "https://epsg.io/6707.proj4",
+			"https://epsg.io/4326.proj4"
         ]
     },
     "geoStoreUrl": "rest/geostore/",
@@ -43,9 +47,29 @@
       "def": "+proj=tmerc +lat_0=0 +lon_0=9 +k=0.9996 +x_0=1500000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs",
       "extent": [1241482.0019, 973563.1609, 1830078.9331, 5215189.0853],
       "worldExtent": [6.6500, 8.8000, 12.0000, 47.0500]
+    },{
+      "code": "EPSG:6707",
+      "def": "+proj=utm +zone=32 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
+      "extent": [1241482.0019, 973563.1609, 1830078.9331, 5215189.0853],
+      "worldExtent": [6.6500, 8.8000, 12.0000, 47.0500]
     }],
     "initialState": {
       "defaultState": {
+		"mapInfo": {
+			"configuration": {
+				"infoFormat": "text/html"
+			},
+			"enabled": true,
+			"infoFormat": "text/html"
+		},
+        "annotations": {
+          "config": {
+            "multiGeometry": true,
+            "validationErrors": {}
+          },
+          "format": "decimal",
+          "defaultTextAnnotation": "New"
+        },
         "theme": {
           "selectedTheme": {"id": "difesa_suolo"}
         },
@@ -144,9 +168,11 @@
                 "cfg": {
                     "activateMetedataTool": false,
                     "activateMapTitle": false,
-                    "activateSortLayer": false
+                    "activateSortLayer": false,
+                    "activateLayerFilterTool": false,
+                    "activateQueryTool": false
                 }
-            }, {
+            }, "AddGroup", {
                 "name": "TOCItemsSettings",
                 "cfg": {
                     "width": 300
@@ -164,7 +190,7 @@
             }, {
                 "name": "Search",
                 "cfg": {
-                  "showOptions": true,
+                  "showOptions": false,
                   "withToggle": ["max-width: 768px", "min-width: 768px"]
                 }
             }, {
@@ -225,10 +251,11 @@
                 }
               }
             }
-          }, "AutoMapUpdate", {"name": "HelpLinkSar", "hideFrom": "{state('mapId') !== '14' ? 'BurgerMenu' : ''}"}, "Share", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "FloatingLegend", "Annotations",
+          }, "AutoMapUpdate", {"name": "HelpLinkSar", "hideFrom": "{state('mapId') !== '14' ? 'BurgerMenu' : ''}"}, "Share", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "Annotations",
             {
                 "name": "Identify",
                 "cfg": {
+                    "showHighlightFeatureButton": true,
                     "viewerOptions": {
                         "container": "{context.ReactSwipe}"
                     }
@@ -269,13 +296,20 @@
                 "cfg": {
                     "activateQueryTool": true,
                     "activateAddLayerButton": true,
+                    "activateAddGroupButton": true,
                     "activateMetedataTool": false
                 }
             },
+            "AddGroup",
             "TOCItemsSettings",
             "Tutorial", "MapFooter", {
-                "name": "Measure"
-            }, "Print", "ShapeFile", "Timeline", "Playback", {
+                "name": "Measure",
+                "cfg": {
+                  "defaultOptions": {
+                    "showAddAsAnnotation": true
+                  }
+                }
+            }, "Print", "MapImport", "MapExport", {
                 "name": "Settings",
                 "cfg": {
                     "wrap": true
@@ -288,16 +322,31 @@
             }, {
               "name": "About",
               "showIn": ["BurgerMenu"]
-            }, {
+            }
+            , {
               "name": "MousePosition",
               "cfg": {
                 "editCRS": true,
                 "showLabels": true,
                 "showToggle": true,
                 "filterAllowedCRS": ["EPSG:4326", "EPSG:3857"],
+                "additionalCRS": {"EPSG:3003": { "label": "EPSG:3003" }}
+              }
+            }, {
+              "name": "CRSSelector",
+              "cfg": {
                 "additionalCRS": {
-                  "EPSG:3003": { "label": "EPSG:3003" }
-                }
+
+                },
+                "filterAllowedCRS": [
+                  "EPSG:4326",
+                  "EPSG:3857",
+				  "EPSG:3003",
+				  "EPSG:6707"
+                ],
+                "allowedRoles": [
+                  "ADMIN"
+                ]
               }
             }, {
                 "name": "Search",
@@ -346,8 +395,10 @@
                 "declineUrl" : "http://www.google.com"
                 }
             },
-            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "GlobeViewSwitcher", "SearchServicesConfig", "WidgetsBuilder", "Widgets", "WidgetsTray", {"name": "SarCharts", "cfg": {"withGlobalRef": true}} ,
-	    "FloatingLegend", {
+            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig", "WidgetsBuilder", "Widgets", "WidgetsTray", {"name": "SarCharts", "cfg": {"withGlobalRef": true}} ,
+	    "Timeline",
+	    "Playback",
+	    {
             "name": "ShowSarReport",
             "hideFrom": "{state('mapId') !== '14' ? 'Toolbar' : ''}"
           },
@@ -441,7 +492,7 @@
                     "activateRemoveLayer": false
                 }
 
-            }, "MapFooter", {
+            }, "AddGroup", "MapFooter", {
                 "name": "Settings",
                 "cfg": {
                     "wrap": true
@@ -449,7 +500,7 @@
             }, {
                 "name": "Search",
                 "cfg": {
-                  "showOptions": true,
+                  "showOptions": false,
                   "withToggle": ["max-width: 768px", "min-width: 768px"]
                 }
             }, {

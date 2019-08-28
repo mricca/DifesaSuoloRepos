@@ -46,7 +46,13 @@ module.exports = {
     }],
     initialState: {
         defaultState: {
-            mapInfo: {enabled: true, infoFormat: 'text/html'},
+            mapInfo: {
+                configuration: {
+                    infoFormat: "text/html"
+                },
+                    enabled: true,
+                    infoFormat: "text/html"
+            },
             mousePosition: {enabled: false},
             controls: {
                 help: {
