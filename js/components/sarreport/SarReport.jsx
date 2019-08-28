@@ -9,8 +9,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const {Glyphicon, Panel, Grid} = require('react-bootstrap');
 const Dialog = require('../../../MapStore2/web/client/components/misc/Dialog');
-const Portal = require('../../../MapStore2/web/client/components/misc/Portal');
-import { ResizableBox } from 'react-resizable';
+const BorderLayout = require('../../../MapStore2/web/client/components/layout/BorderLayout');
 import Iframe from 'react-iframe';
 // require('./infochart.css');
 
@@ -55,30 +54,28 @@ class SarReport extends React.Component {
     render() {
         return (
             this.props.show ? (
-                <ResizableBox width={1080} height={300} minConstraints={[100, 100]} maxConstraints={[300, 300]}>
-                    <Portal>
-                        <Dialog maskLoading={this.props.maskLoading} id={this.props.id} style={this.props.panelStyle} className={this.props.panelClassName}>
-                            <span role="header">
-                                <span className="layer-settings-metadata-panel-title">Bollettini</span>
-                                <button onClick={() => this.closePanel()} className="layer-settings-metadata-panel-close close">{this.props.closeGlyph ? <Glyphicon glyph={this.props.closeGlyph}/> : <span>×</span>}</button>
-                            </span>
-                            <div role="body">
-                                <Panel >
-                                    <Grid fluid >
-                                        <Iframe url="https://geoportale.lamma.rete.toscana.it/progetto_sar_rt/bollettini_sar/index.html"
-                                                width= "100%"
-                                                height="650px"
-                                                id="myId"
-                                                className="myClassname"
-                                                display="initial"
-                                                position="relative"
-                                                allowFullScreen/>
-                                    </Grid>
-                                </Panel>
-                            </div>
-                        </Dialog>
-                    </Portal>
-                </ResizableBox>
+                <BorderLayout style={{zIndex: 10000}}>
+                    <Dialog maskLoading={this.props.maskLoading} id={this.props.id} style={this.props.panelStyle} className={this.props.panelClassName}>
+                        <span role="header">
+                            <span className="layer-settings-metadata-panel-title">Bollettini</span>
+                            <button onClick={() => this.closePanel()} className="layer-settings-metadata-panel-close close">{this.props.closeGlyph ? <Glyphicon glyph={this.props.closeGlyph}/> : <span>×</span>}</button>
+                        </span>
+                        <div role="body">
+                            <Panel >
+                                <Grid fluid >
+                                    <Iframe url="https://geoportale.lamma.rete.toscana.it/progetto_sar_rt/bollettini_sar/index.html"
+                                            width= "100%"
+                                            height="650px"
+                                            id="myId"
+                                            className="myClassname"
+                                            display="initial"
+                                            position="relative"
+                                            allowFullScreen/>
+                                </Grid>
+                            </Panel>
+                        </div>
+                    </Dialog>
+                </BorderLayout>
             ) : null
         );
     }

@@ -9,8 +9,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const {Glyphicon} = require('react-bootstrap');
 const Dialog = require('../../../MapStore2/web/client/components/misc/Dialog');
-const Portal = require('../../../MapStore2/web/client/components/misc/Portal');
-import { ResizableBox } from 'react-resizable';
+const BorderLayout = require('../../../MapStore2/web/client/components/layout/BorderLayout');
 const {LineChart, Line, Brush, XAxis, YAxis, CartesianGrid, Tooltip, Legend} = require('recharts');
 
 /**
@@ -41,7 +40,7 @@ class SarChart extends React.Component {
     static defaultProps = {
         id: "mapstore-sarchart-panel",
         panelClassName: "toolbar-panel portal-dialog",
-        panelStyle: {"width": "800px"},
+        panelStyle: {"width": "800px", "zIndex": 10000},
         closeGlyph: "1-close",
         onSetSarChartVisibility: () => {},
         onFetchSarChartData: () => {},
@@ -69,8 +68,7 @@ class SarChart extends React.Component {
     };
     render() {
         return this.props.show ? (
-            <ResizableBox width={600} height={400} minConstraints={[100, 100]} maxConstraints={[300, 300]}>
-                <Portal>
+                <BorderLayout style={{zIndex: 10000}}>
                     <Dialog maskLoading={this.props.maskLoading} id={this.props.id} style={this.props.panelStyle} className={this.props.panelClassName}>
                         <span role="header">
                             <span className="layer-settings-metadata-panel-title">Grafico dei valori di spostamento cumulato</span>
@@ -81,8 +79,7 @@ class SarChart extends React.Component {
                             {this.showChart()}
                         </div>
                     </Dialog>
-                </Portal>
-            </ResizableBox>
+                </BorderLayout>
         ) : null;
     }
     accept = (check, value) => {
