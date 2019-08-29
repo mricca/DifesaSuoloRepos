@@ -30,6 +30,10 @@
     "authenticationRules": [{
         "urlPattern": ".*geostore.*",
         "method": "bearer"
+    }, {
+        "urlPattern": "\\/geoserver*",
+        "authkeyParamName": "authkey",
+        "method": "authkey"
     }],
     "monitorState": [
       {"name": "routing", "path": "routing.location.pathname"},
@@ -43,6 +47,14 @@
     }],
     "initialState": {
       "defaultState": {
+        "annotations": {
+          "config": {
+            "multiGeometry": true,
+            "validationErrors": {}
+          },
+          "format": "decimal",
+          "defaultTextAnnotation": "New"
+        },
         "theme": {
           "selectedTheme": {"id": "ait"}
         },
@@ -125,9 +137,11 @@
                 "cfg": {
                     "activateMetedataTool": false,
                     "activateMapTitle": false,
-                    "activateSortLayer": false
+                    "activateSortLayer": false,
+                    "activateLayerFilterTool": false,
+                    "activateQueryTool": false
                 }
-            }, {
+            }, "AddGroup", {
                 "name": "TOCItemsSettings",
                 "cfg": {
                     "width": 300
@@ -204,10 +218,11 @@
                 }
               }
             }
-          }, "AutoMapUpdate", "HelpLink", "DrawerMenu", "Version", "Notifications", "BackgroundSelector",
+          }, "AutoMapUpdate", "HelpLink", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "Annotations",
             {
                 "name": "Identify",
                 "cfg": {
+                    "showHighlightFeatureButton": true,
                     "viewerOptions": {
                         "container": "{context.ReactSwipe}"
                     }
@@ -226,7 +241,12 @@
                         "alwaysVisible": true
                     }
                 }
-            }, "Home", "FeatureEditor",
+            }, "Home", {
+              "name": "FeatureEditor",
+              "cfg": {
+                "editingAllowedRoles": ["ADMIN"]
+              }
+            },
             {
               "name": "QueryPanel",
               "cfg": {
@@ -248,13 +268,20 @@
                 "cfg": {
                     "activateQueryTool": true,
                     "activateAddLayerButton": true,
+                    "activateAddGroupButton": true,
                     "activateMetedataTool": false
                 }
             },
+            "AddGroup",
             "TOCItemsSettings",
             "Tutorial", "MapFooter", {
-                "name": "Measure"
-            }, "Print", "ShapeFile", "Timeline", "Playback", {
+                "name": "Measure",
+                "cfg": {
+                  "defaultOptions": {
+                    "showAddAsAnnotation": true
+                  }
+                }
+            }, "Print", "MapImport", "MapExport", {
                 "name": "Settings",
                 "cfg": {
                     "wrap": true
@@ -267,16 +294,29 @@
             }, {
               "name": "About",
               "showIn": ["BurgerMenu"]
-            }, {
+            }
+            , {
               "name": "MousePosition",
               "cfg": {
                 "editCRS": true,
                 "showLabels": true,
                 "showToggle": true,
                 "filterAllowedCRS": ["EPSG:4326", "EPSG:3857"],
+                "additionalCRS": {"EPSG:3003": { "label": "EPSG:3003" }}
+              }
+            }, {
+              "name": "CRSSelector",
+              "cfg": {
                 "additionalCRS": {
-                  "EPSG:3003": { "label": "EPSG:3003" }
-                }
+
+                },
+                "filterAllowedCRS": [
+                  "EPSG:4326",
+                  "EPSG:3857"
+                ],
+                "allowedRoles": [
+                  "ADMIN"
+                ]
               }
             }, {
                 "name": "Search",
@@ -332,8 +372,9 @@
                 "declineUrl" : "http://www.google.com"
                 }
             },
-            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig",
-            "FloatingLegend",
+            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig", "WidgetsBuilder", "Widgets", "WidgetsTray",
+            "Timeline",
+            "Playback",
             "FeedbackMask",
             "StyleEditor",
             {
@@ -419,7 +460,7 @@
                     "activateRemoveLayer": false
                 }
 
-            }, "MapFooter", {
+            }, "AddGroup", "MapFooter", {
                 "name": "Settings",
                 "cfg": {
                     "wrap": true
@@ -427,6 +468,7 @@
             }, {
                 "name": "Search",
                 "cfg": {
+                  "showOptions": false,
                   "withToggle": ["max-width: 768px", "min-width: 768px"]
                 }
             }, {

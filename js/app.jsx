@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const ConfigUtils = require('../MapStore2/web/client/utils/ConfigUtils');
+const ConfigUtils = require('@mapstore/utils/ConfigUtils');
 /**
  * Add custom (overriding) translations with:
  *
@@ -29,15 +29,16 @@ ConfigUtils.setLocalConfigurationFile('localConfig.json');
  *
  * Or override the application configuration file with (e.g. only one page with a mapviewer):
  *
- * const appConfig = assign({}, require('../MapStore2/web/client/product/appConfig'), {
+ * const appConfig = assign({}, require('@mapstore/product/appConfig'), {
  *     pages: [{
  *         name: "mapviewer",
  *         path: "/",
- *         component: require('../MapStore2/web/client/product/pages/MapViewer')
+ *         component: require('@mapstore/product/pages/MapViewer')
  *     }]
  * });
  */
-// const appConfig = require('../MapStore2/web/client/product/appConfig');
+
+// const appConfig = require('@mapstore/product/appConfig');
 const appConfig = require('./appConfig');
 
 /**
@@ -45,7 +46,7 @@ const appConfig = require('./appConfig');
  *
  * const plugins = require('./plugins');
  */
-const plugins = require('../MapStore2/web/client/product/plugins');
+const plugins = require('@mapstore/product/plugins');
 plugins.plugins.AttributionPlugin = require('../js/plugins/Attribution');
 plugins.plugins.HomeDescriptionPlugin = require('../js/plugins/HomeDescription');
 plugins.plugins.AboutPlugin = require('../js/plugins/About');
@@ -54,4 +55,4 @@ plugins.plugins.AitHomePlugin = require('../js/plugins/AitHome');
 plugins.plugins.ChangePeriodAitPlugin = require('../js/plugins/ChangePeriodAit');
 plugins.plugins.InfoChartPlugin = require('../js/plugins/InfoChart');
 
-require('../MapStore2/web/client/product/main')(appConfig, plugins);
+require('@mapstore/product/main')(appConfig, plugins);

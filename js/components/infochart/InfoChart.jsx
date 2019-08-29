@@ -12,9 +12,8 @@ const Message = require('../../../MapStore2/web/client/components/I18N/Message')
 // const {Glyphicon, Panel, Label, Grid, ControlLabel, FormGroup} = require('react-bootstrap');
 const {DropdownList} = require('react-widgets');
 const Dialog = require('../../../MapStore2/web/client/components/misc/Dialog');
-const Portal = require('../../../MapStore2/web/client/components/misc/Portal');
-import { ResizableBox } from 'react-resizable';
-const {AreaChart, Area, Brush, XAxis, YAxis, CartesianGrid, Legend, Tooltip} = require('recharts');
+const BorderLayout = require('../../../MapStore2/web/client/components/layout/BorderLayout');
+const {AreaChart, Area, XAxis, YAxis, CartesianGrid, Legend, Tooltip} = require('recharts');
 const moment = require('moment');
 const DateTimePicker = require('react-widgets').DateTimePicker;
 const DateAPI = require('../../utils/ManageDateUtils');
@@ -81,7 +80,9 @@ class InfoChart extends React.Component {
         panelStyle: {
             width: "880px",
             maxWidth: "880px",
-            left: "calc(50% - 440px)"
+            left: "calc(50% - 440px)",
+            height: "fit-content",
+            top: "0px"
         },
         closeGlyph: "1-close",
         onSetInfoChartVisibility: () => {},
@@ -108,7 +109,7 @@ class InfoChart extends React.Component {
                 bottom: 5
             },
             width: 850,
-            height: 400
+            height: 300
         },
         animated: true,
         classNameInfoChartDate: "mapstore-infochartdate",
@@ -183,7 +184,6 @@ class InfoChart extends React.Component {
                             fill="url(#st_value)"
                             activeDot={{r: 8}}
                             name="Anno in corso (mm)"/>
-                        <Brush/>
                     </AreaChart>
                 );
             } else if (this.props.infoChartData.variable === 'temp' || this.props.infoChartData.variable === 'bis') {
@@ -231,57 +231,58 @@ class InfoChart extends React.Component {
         }
         return null;
     }
+    getBody = () => {
+        return (
+            <Dialog maskLoading={this.props.maskLoading} id={this.props.id} style={this.props.panelStyle} className={this.props.panelClassName}>
+                <span role="header">
+                    <span className="layer-settings-metadata-panel-title">Pannello Grafici - Latitudine: {parseFloat(this.props.infoChartData.latlng.lat.toFixed(5))}, Longitudine: {parseFloat(this.props.infoChartData.latlng.lng.toFixed(5))}</span>
+                    <button onClick={() => this.closePanel()} className="layer-settings-metadata-panel-close close">{this.props.closeGlyph ? <Glyphicon glyph={this.props.closeGlyph}/> : <span>×</span>}</button>
+                </span>
+                <div role="body">
+                    <Panel >
+                        <Grid fluid style={{paddingTop: 2, paddingBottom: 2}}>
+                            <FormGroup>
+                                <ControlLabel style={{fontSize: "14px"}}><Message msgId="aitapp.selectMeteoVariable"/></ControlLabel>
+                                <DropdownList
+                                    key="charts"
+                                    data={this.props.variableList}
+                                    valueField = "id"
+                                    textField = "name"
+                                    value={this.props.infoChartData && this.props.infoChartData.variable || "prec"}
+                                    onChange={(value) => {
+                                        this.changeChartVariable(value);
+                                    }}/>
+                                <ControlLabel style={{fontSize: "14px", marginTop: "10px"}}><Message msgId="aitapp.selectDateHidrologicYear"/></ControlLabel>
+                                <DateTimePicker
+                                    time={false}
+                                    min={new Date("1995-01-01")}
+                                    max={moment().subtract(1, 'day')._d}
+                                    format={"DD MMMM, YYYY"}
+                                    editFormat={"YYYY-MM-DD"}
+                                    value={new Date(this.props.infoChartData.toDataReal)}
+                                    onChange={(value) => this.changeChartDateTo(value)}/>
+                                <ControlLabel style={{fontSize: "14px", marginTop: "10px"}}><Message msgId="aitapp.selectCumulativePeriod"/></ControlLabel>
+                                <DropdownList
+                                    key="period"
+                                    data={this.props.periodTypes}
+                                    valueField = "key"
+                                    textField = "label"
+                                    value={this.props.infoChartData && this.props.infoChartData.periodType || "1"}
+                                    onChange={(value) => {
+                                        this.changeChartDateFrom(value.key);
+                                    }}/>
+                            </FormGroup>
+                        </Grid>
+                    </Panel>
+                    {this.showChart()}
+                </div>
+            </Dialog>
+        );
+    }
     render() {
         return (
             this.props.show ? (
-                <ResizableBox width={850} height={300} minConstraints={[100, 100]} maxConstraints={[300, 300]}>
-                    <Portal>
-                        <Dialog maskLoading={this.props.maskLoading} id={this.props.id} style={this.props.panelStyle} className={this.props.panelClassName}>
-                            <span role="header">
-                                <span className="layer-settings-metadata-panel-title">Pannello Grafici - Latitudine: {parseFloat(this.props.infoChartData.latlng.lat.toFixed(5))}, Longitudine: {parseFloat(this.props.infoChartData.latlng.lng.toFixed(5))}</span>
-                                <button onClick={() => this.closePanel()} className="layer-settings-metadata-panel-close close">{this.props.closeGlyph ? <Glyphicon glyph={this.props.closeGlyph}/> : <span>×</span>}</button>
-                            </span>
-                            <div role="body">
-                                <Panel >
-                                    <Grid fluid style={{paddingTop: 2, paddingBottom: 2}}>
-                                        <FormGroup>
-                                            <ControlLabel style={{fontSize: "14px"}}><Message msgId="aitapp.selectMeteoVariable"/></ControlLabel>
-                                            <DropdownList
-                                                key="charts"
-                                                data={this.props.variableList}
-                                                valueField = "id"
-                                                textField = "name"
-                                                value={this.props.infoChartData && this.props.infoChartData.variable || "prec"}
-                                                onChange={(value) => {
-                                                    this.changeChartVariable(value);
-                                                }}/>
-                                            <ControlLabel style={{fontSize: "14px", marginTop: "10px"}}><Message msgId="aitapp.selectDateHidrologicYear"/></ControlLabel>
-                                            <DateTimePicker
-                                                time={false}
-                                                min={new Date("1995-01-01")}
-                                                max={moment().subtract(1, 'day')._d}
-                                                format={"DD MMMM, YYYY"}
-                                                editFormat={"YYYY-MM-DD"}
-                                                value={new Date(this.props.infoChartData.toDataReal)}
-                                                onChange={(value) => this.changeChartDateTo(value)}/>
-                                            <ControlLabel style={{fontSize: "14px", marginTop: "10px"}}><Message msgId="aitapp.selectCumulativePeriod"/></ControlLabel>
-                                            <DropdownList
-                                                key="period"
-                                                data={this.props.periodTypes}
-                                                valueField = "key"
-                                                textField = "label"
-                                                value={this.props.infoChartData && this.props.infoChartData.periodType || "1"}
-                                                onChange={(value) => {
-                                                    this.changeChartDateFrom(value.key);
-                                                }}/>
-                                        </FormGroup>
-                                    </Grid>
-                                </Panel>
-                                {this.showChart()}
-                            </div>
-                        </Dialog>
-                    </Portal>
-                </ResizableBox>
+                <BorderLayout style={{zIndex: 1023}} children={this.getBody()}/>
             ) : null
         );
     }

@@ -48,7 +48,13 @@ module.exports = {
     }],
     initialState: {
         defaultState: {
-            mapInfo: {enabled: true, infoFormat: 'text/html'},
+            mapInfo: {
+                configuration: {
+                    infoFormat: "text/html"
+                },
+                    enabled: true,
+                    infoFormat: "text/html"
+            },
             mousePosition: {enabled: false},
             aithome: {
                 fromData: new Date(DateAPI.calculateDateFromKey("1", moment().subtract(1, 'day')._d).fromData),

@@ -21,7 +21,7 @@ class About extends React.Component {
                 margin: "auto",
                 maxWidth: "100%"
             }} className="container-fluid">
-            <Row className="show-grid">
+            {/*<Row className="show-grid">
                 <Col ms={12} msPush={12}>
                     <h2>Attività di monitoraggio del rischio idrogeologico del territorio</h2>
                     <p>
@@ -30,10 +30,9 @@ class About extends React.Component {
                     <p>
                         L'obiettivo principale delle attività è quello di fornire informazioni utili alla formulazione di un quadro sinottico dei fenomeni di deformazione del suolo sull'intero territorio regionale, a supporto delle Regioni, dei Comuni e degli Enti Territoriali coinvolti nelle attività per la difesa del territorio e di gestione dei rischi. A tal scopo è stata generata una banca dati rappresentativa del territorio regionale contenente le misure dei movimenti del terreno ottenute mediante interferometria SAR (Synthetic Aperture Radar) satellitare e resa fruibile attraverso il Geoportale pubblico del Consorzio LaMMA.
                     </p>
-
                 </Col>
             </Row>
-            <hr></hr>
+            <hr></hr>*/}
             <Row className="show-grid">
                 <Col ms={6} msPush={6}>
                     <p>
