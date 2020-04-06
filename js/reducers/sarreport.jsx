@@ -15,11 +15,11 @@ const sarReportDefaultState = {
 
 function sarreport(state = sarReportDefaultState, action) {
     switch (action.type) {
-        case SET_SARREPORT_VISIBILITY: {
-            return assign({}, state, {showSarReportPanel: action.status});
-        }
-        default:
-            return state;
+    case SET_SARREPORT_VISIBILITY: {
+        return assign({}, state, {showSarReportPanel: action.status});
+    }
+    default:
+        return state;
     }
 }
 

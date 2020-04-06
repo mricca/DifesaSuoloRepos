@@ -21,7 +21,7 @@ module.exports = require('./MapStore2/build/buildConfig')(
     paths,
     extractThemesPlugin,
     true,
-    "/difesa_suolo/dist/",
+    "dist/",
     '.difesa_suolo',
     [
         new HtmlWebpackPlugin({
@@ -47,7 +47,6 @@ module.exports = require('./MapStore2/build/buildConfig')(
     ],
     {
         "@mapstore": path.resolve(__dirname, "MapStore2", "web", "client"),
-        "@js": path.resolve(__dirname, "js"),
-        react: path.resolve(__dirname, 'node_modules', 'react')
+        "@js": path.resolve(__dirname, "js")
     }
 );

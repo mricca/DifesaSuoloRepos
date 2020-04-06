@@ -398,10 +398,6 @@
             "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig", "WidgetsBuilder", "Widgets", "WidgetsTray", {"name": "SarCharts", "cfg": {"withGlobalRef": true}} ,
 	    "Timeline",
 	    "Playback",
-	    {
-            "name": "ShowSarReport",
-            "hideFrom": "{state('mapId') !== '14' ? 'Toolbar' : ''}"
-          },
             "FeedbackMask",
                   {
                       "name": "StyleEditor",

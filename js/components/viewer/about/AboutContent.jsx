@@ -18,9 +18,9 @@ require('../../../assets/css/footer.css');
 class About extends React.Component {
     render() {
         return (<Grid style={{
-                margin: "auto",
-                maxWidth: "100%"
-            }} className="container-fluid">
+            margin: "auto",
+            maxWidth: "100%"
+        }} className="container-fluid">
             <Row className="show-grid">
                 <Col ms={12} msPush={12}>
                     <h2>Raccolta Banche dati Direzione Difesa del Suolo e Protezione Civile della Regione Toscana</h2>
@@ -40,10 +40,10 @@ class About extends React.Component {
                     <p>Utilizzando il framework:</p>
                     <p>
                         <a href="https://github.com/geosolutions-it/MapStore2" style={{
-                                display: "block",
-                                margin: "auto",
-                                maxWidth: "100%"
-                            }} target="_blank"><img src={msLogo} height="70px"/></a>
+                            display: "block",
+                            margin: "auto",
+                            maxWidth: "100%"
+                        }} target="_blank"><img src={msLogo} height="70px"/></a>
                     </p>
                 </Col>
             </Row>

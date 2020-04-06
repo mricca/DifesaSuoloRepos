@@ -28,7 +28,7 @@ const SarCharts = connect(
     mapDispatchToProps,
     null,
     {
-        withRef: true
+        forwardRef: true
     }
 )(sarChartComponent);
 

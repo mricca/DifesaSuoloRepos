@@ -10,7 +10,8 @@ const React = require('react');
 const {Glyphicon, Panel, Grid} = require('react-bootstrap');
 const Dialog = require('../../../MapStore2/web/client/components/misc/Dialog');
 const BorderLayout = require('../../../MapStore2/web/client/components/layout/BorderLayout');
-import Iframe from 'react-iframe';
+// import Iframe from 'react-iframe';
+const { Iframe } = require('react-iframe');
 // require('./infochart.css');
 
 /**
@@ -64,13 +65,13 @@ class SarReport extends React.Component {
                             <Panel >
                                 <Grid fluid >
                                     <Iframe url="https://geoportale.lamma.rete.toscana.it/progetto_sar_rt/bollettini_sar/index.html"
-                                            width= "100%"
-                                            height="650px"
-                                            id="myId"
-                                            className="myClassname"
-                                            display="initial"
-                                            position="relative"
-                                            allowFullScreen/>
+                                        width= "100%"
+                                        height="650px"
+                                        id="myId"
+                                        className="myClassname"
+                                        display="initial"
+                                        position="relative"
+                                        allowFullScreen/>
                                 </Grid>
                             </Panel>
                         </div>

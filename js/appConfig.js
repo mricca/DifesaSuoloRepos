@@ -50,10 +50,12 @@ module.exports = {
                 configuration: {
                     infoFormat: "text/html"
                 },
-                    enabled: true,
-                    infoFormat: "text/html"
+                enabled: true,
+                infoFormat: "text/html"
             },
-            mousePosition: {enabled: false},
+            mousePosition: {
+                enabled: false
+            },
             controls: {
                 help: {
                     enabled: false
@@ -88,8 +90,15 @@ module.exports = {
             }
         },
         mobile: {
-            mapInfo: {enabled: true, infoFormat: 'text/html'},
-            mousePosition: {enabled: true, crs: "EPSG:4326", showCenter: true}
+            mapInfo: {
+                enabled: true,
+                infoFormat: 'text/html'
+            },
+            mousePosition: {
+                enabled: true,
+                crs: "EPSG:4326",
+                showCenter: true
+            }
         }
     },
     appEpics: {},

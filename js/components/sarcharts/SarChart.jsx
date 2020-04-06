@@ -10,7 +10,16 @@ const React = require('react');
 const {Glyphicon} = require('react-bootstrap');
 const Dialog = require('../../../MapStore2/web/client/components/misc/Dialog');
 const BorderLayout = require('../../../MapStore2/web/client/components/layout/BorderLayout');
-const {LineChart, Line, Brush, XAxis, YAxis, CartesianGrid, Tooltip, Legend} = require('recharts');
+const {
+    LineChart,
+    Line,
+    Brush,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend
+} = require('recharts');
 
 /**
   * Component used to show a panel with the charts data sar
@@ -40,7 +49,10 @@ class SarChart extends React.Component {
     static defaultProps = {
         id: "mapstore-sarchart-panel",
         panelClassName: "toolbar-panel portal-dialog",
-        panelStyle: {"width": "800px", "zIndex": 10000},
+        panelStyle: {
+            "width": "800px",
+            "zIndex": 10000
+        },
         closeGlyph: "1-close",
         onSetSarChartVisibility: () => {},
         onFetchSarChartData: () => {},
@@ -51,36 +63,44 @@ class SarChart extends React.Component {
     };
     showChart = () => {
         if (!this.props.maskLoading) {
-            return (
-                <LineChart width={600} height={400} data={this.formatData(this.props.data)} syncId="anyId"
-                      margin={{top: 10, right: 30, left: 0, bottom: 10}}>
-                  <CartesianGrid strokeDasharray="3 3"/>
-                  <XAxis dataKey="name" hide={false} angle={-10}/>
-                  <YAxis/>
-                  <Tooltip/>
-                  <Legend/>
-                  <Line type="monotone" dataKey="value" stroke="#004DA8" fill="#004DA8" name="Displacement [mm]"/>
-                  <Brush />
-                </LineChart>
-            );
+            return (<LineChart width={600} height={400} data={this.formatData(this.props.data)} syncId="anyId" margin={{
+                top: 10,
+                right: 30,
+                left: 0,
+                bottom: 10
+            }}>
+                <CartesianGrid strokeDasharray="3 3"/>
+                <XAxis dataKey="name" hide={false} angle={-10}/>
+                <YAxis/>
+                <Tooltip/>
+                <Legend/>
+                <Line type="monotone" dataKey="value" stroke="#004DA8" fill="#004DA8" name="Displacement [mm]"/>
+                <Brush/>
+            </LineChart>);
         }
         return null;
     };
     render() {
-        return this.props.show ? (
-                <BorderLayout style={{zIndex: 10000}}>
-                    <Dialog maskLoading={this.props.maskLoading} id={this.props.id} style={this.props.panelStyle} className={this.props.panelClassName}>
-                        <span role="header">
-                            <span className="layer-settings-metadata-panel-title">Grafico dei valori di spostamento cumulato</span>
-                            <button onClick={() => this.closePanel(false)} className="layer-settings-metadata-panel-close close">{this.props.closeGlyph ? <Glyphicon glyph={this.props.closeGlyph}/> : <span>×</span>}</button>
-                        </span>
-                        <div role="body">
-                            <h2>Codice: {this.props.sarChartData.code}</h2>
-                            {this.showChart()}
-                        </div>
-                    </Dialog>
-                </BorderLayout>
-        ) : null;
+        return this.props.show
+            ? (<BorderLayout style={{
+                zIndex: 10000
+            }}>
+                <Dialog maskLoading={this.props.maskLoading} id={this.props.id} style={this.props.panelStyle} className={this.props.panelClassName}>
+                    <span role="header">
+                        <span className="layer-settings-metadata-panel-title">Grafico dei valori di spostamento cumulato</span>
+                        <button onClick={() => this.closePanel(false)} className="layer-settings-metadata-panel-close close">{
+                            this.props.closeGlyph
+                                ? <Glyphicon glyph={this.props.closeGlyph}/>
+                                : <span>×</span>
+                        }</button>
+                    </span>
+                    <div role="body">
+                        <h2>Codice: {this.props.sarChartData.code}</h2>
+                        {this.showChart()}
+                    </div>
+                </Dialog>
+            </BorderLayout>)
+            : null;
     }
     accept = (check, value) => {
         if (value) {
@@ -96,12 +116,10 @@ class SarChart extends React.Component {
     formatData(values) {
         let data = [];
         values.forEach(function(o) {
-            data.push(
-                {
-                    "name": o.date.substring(0, 10),
-                    "value": parseFloat(o.value.toFixed(1))
-                }
-            );
+            data.push({
+                "name": o.date.substring(0, 10),
+                "value": parseFloat(o.value.toFixed(1))
+            });
         }, this);
         return data;
     }

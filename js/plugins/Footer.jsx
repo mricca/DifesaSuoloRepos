@@ -32,7 +32,7 @@ class Footer extends React.Component {
         return (
             <footer className="site-footer">
                 <Grid>
-                   <div className="container">
+                    <div className="container">
                         <div className="ait-attribution">
                             <a href="http://www.lamma.rete.toscana.it/" target="_blank"><img className="footer-shadow" src={srcLamma}/></a>
                             <a href="http://www.ibimet.cnr.it/" target="_blank"><img className="footer-shadow" style={{margin: "0px 20px"}} src={srcCnr}/></a>

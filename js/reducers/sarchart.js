@@ -11,17 +11,17 @@ const assign = require('object-assign');
 
 function sarchart(state = {showSarChartPanel: false, sarChartData: {}, data: [], maskLoading: true}, action) {
     switch (action.type) {
-        case SET_SARCHART_VISIBILITY: {
-            return assign({}, state, {showSarChartPanel: action.status, data: action.data, maskLoading: action.maskLoading});
-        }
-        case FETCH_SARCHART_DATA: {
-            return assign({}, state, {sarChartData: action.params});
-        }
-        case FETCHED_SARCHART_DATA: {
-            return assign({}, state, {data: action.data, maskLoading: action.maskLoading});
-        }
-        default:
-            return state;
+    case SET_SARCHART_VISIBILITY: {
+        return assign({}, state, {showSarChartPanel: action.status, data: action.data, maskLoading: action.maskLoading});
+    }
+    case FETCH_SARCHART_DATA: {
+        return assign({}, state, {sarChartData: action.params});
+    }
+    case FETCHED_SARCHART_DATA: {
+        return assign({}, state, {data: action.data, maskLoading: action.maskLoading});
+    }
+    default:
+        return state;
     }
 }
 
