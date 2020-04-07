@@ -7,12 +7,11 @@
 */
 const PropTypes = require('prop-types');
 const React = require('react');
-const {Glyphicon, Panel, Grid} = require('react-bootstrap');
-const Dialog = require('../../../MapStore2/web/client/components/misc/Dialog');
-const BorderLayout = require('../../../MapStore2/web/client/components/layout/BorderLayout');
-// import Iframe from 'react-iframe';
-const { Iframe } = require('react-iframe');
-// require('./infochart.css');
+const Portal = require('../../../MapStore2/web/client/components/misc/Portal');
+const ResizableModal = require('../../../MapStore2/web/client/components/misc/ResizableModal');
+const HtmlRenderer = require('../../../MapStore2/web/client/components/misc/HtmlRenderer');
+
+require('./sarreport.css');
 
 /**
   * Component used to show a panel with the charts data sar
@@ -28,26 +27,16 @@ const { Iframe } = require('react-iframe');
 
 class SarReport extends React.Component {
     static propTypes = {
-        id: PropTypes.string,
-        panelClassName: PropTypes.string,
-        panelStyle: PropTypes.object,
-        closeGlyph: PropTypes.string,
         onSetSarReportVisibility: PropTypes.func,
         show: PropTypes.bool,
-        active: PropTypes.bool
+        active: PropTypes.bool,
+        bodyClassName: PropTypes.string
     }
     static defaultProps = {
-        id: "mapstore-sarchart-panel",
-        panelClassName: "toolbar-panel portal-dialog",
-        panelStyle: {
-            width: "1280px",
-            maxWidth: "1280px",
-            left: "calc(50% - 640px)"
-        },
-        closeGlyph: "1-close",
         onSetSarReportVisibility: () => {},
         show: false,
-        active: false
+        active: false,
+        bodyClassName: 'iframe-container'
     }
     shouldComponentUpdate(newProps) {
         return newProps.active;
@@ -55,28 +44,20 @@ class SarReport extends React.Component {
     render() {
         return (
             this.props.show ? (
-                <BorderLayout style={{zIndex: 10000}}>
-                    <Dialog maskLoading={this.props.maskLoading} id={this.props.id} style={this.props.panelStyle} className={this.props.panelClassName}>
-                        <span role="header">
-                            <span className="layer-settings-metadata-panel-title">Bollettini</span>
-                            <button onClick={() => this.closePanel()} className="layer-settings-metadata-panel-close close">{this.props.closeGlyph ? <Glyphicon glyph={this.props.closeGlyph}/> : <span>×</span>}</button>
-                        </span>
-                        <div role="body">
-                            <Panel >
-                                <Grid fluid >
-                                    <Iframe url="https://geoportale.lamma.rete.toscana.it/progetto_sar_rt/bollettini_sar/index.html"
-                                        width= "100%"
-                                        height="650px"
-                                        id="myId"
-                                        className="myClassname"
-                                        display="initial"
-                                        position="relative"
-                                        allowFullScreen/>
-                                </Grid>
-                            </Panel>
+                (<Portal>
+                    <ResizableModal size="lg"
+                        onClose={() => {
+                            this.closePanel(false);
+                        }}
+                        title={'Bollettini'}
+                        show
+                        bodyClassName={this.props.bodyClassName}
+                        showFullscreen>
+                        <div>
+                            <HtmlRenderer id={'show-report-id'} html={'<iframe webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" width="560" height="315" src="https://geoportale.lamma.rete.toscana.it/progetto_sar_rt/bollettini_sar/index.html"></iframe>'}/>
                         </div>
-                    </Dialog>
-                </BorderLayout>
+                    </ResizableModal>
+                </Portal>)
             ) : null
         );
     }

@@ -7,10 +7,12 @@
 */
 const PropTypes = require('prop-types');
 const React = require('react');
-const {Glyphicon} = require('react-bootstrap');
-const Dialog = require('../../../MapStore2/web/client/components/misc/Dialog');
-const BorderLayout = require('../../../MapStore2/web/client/components/layout/BorderLayout');
+const Portal = require('../../../MapStore2/web/client/components/misc/Portal');
+const ResizableModal = require('../../../MapStore2/web/client/components/misc/ResizableModal');
+const Message = require('../../../MapStore2/web/client/components/I18N/Message');
+const Spinner = require('react-spinkit');
 const {
+    ResponsiveContainer,
     LineChart,
     Line,
     Brush,
@@ -36,8 +38,6 @@ const {
 class SarChart extends React.Component {
     static propTypes = {
         id: PropTypes.string,
-        panelClassName: PropTypes.string,
-        panelStyle: PropTypes.object,
         closeGlyph: PropTypes.string,
         onSetSarChartVisibility: PropTypes.func,
         onFetchSarChartData: PropTypes.func,
@@ -48,11 +48,6 @@ class SarChart extends React.Component {
     };
     static defaultProps = {
         id: "mapstore-sarchart-panel",
-        panelClassName: "toolbar-panel portal-dialog",
-        panelStyle: {
-            "width": "800px",
-            "zIndex": 10000
-        },
         closeGlyph: "1-close",
         onSetSarChartVisibility: () => {},
         onFetchSarChartData: () => {},
@@ -61,9 +56,32 @@ class SarChart extends React.Component {
         maskLoading: true,
         data: []
     };
+
+    renderLoading = () => {
+        if (this.props.maskLoading) {
+            return (<div style={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                overflow: "visible",
+                margin: "auto",
+                verticalAlign: "center",
+                left: "0",
+                background: "rgba(255, 255, 255, 0.5)",
+                zIndex: 2
+            }}><div style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -40%)"
+                }}><Message msgId="loading" /><Spinner spinnerName="circle" noFadeIn overrideSpinnerClassName="spinner"/></div></div>);
+        }
+        return null;
+    };
+
     showChart = () => {
         if (!this.props.maskLoading) {
-            return (<LineChart width={600} height={400} data={this.formatData(this.props.data)} syncId="anyId" margin={{
+            return (<ResponsiveContainer width="99%" height="99%"><LineChart data={this.formatData(this.props.data)} syncId="anyId" margin={{
                 top: 10,
                 right: 30,
                 left: 0,
@@ -76,32 +94,40 @@ class SarChart extends React.Component {
                 <Legend/>
                 <Line type="monotone" dataKey="value" stroke="#004DA8" fill="#004DA8" name="Displacement [mm]"/>
                 <Brush/>
-            </LineChart>);
+            </LineChart></ResponsiveContainer>);
         }
-        return null;
+        return this.renderLoading();
     };
     render() {
-        return this.props.show
-            ? (<BorderLayout style={{
-                zIndex: 10000
-            }}>
-                <Dialog maskLoading={this.props.maskLoading} id={this.props.id} style={this.props.panelStyle} className={this.props.panelClassName}>
-                    <span role="header">
-                        <span className="layer-settings-metadata-panel-title">Grafico dei valori di spostamento cumulato</span>
-                        <button onClick={() => this.closePanel(false)} className="layer-settings-metadata-panel-close close">{
-                            this.props.closeGlyph
-                                ? <Glyphicon glyph={this.props.closeGlyph}/>
-                                : <span>×</span>
-                        }</button>
-                    </span>
-                    <div role="body">
+        // const panelHeader = (
+        //     <span role="header">
+        //         <span className="layer-settings-metadata-panel-title">Grafico dei valori di spostamento cumulato</span>
+        //         <button onClick={() => this.closePanel(false)} className="layer-settings-metadata-panel-close close">{
+        //             this.props.closeGlyph
+        //                 ? <Glyphicon glyph={this.props.closeGlyph}/>
+        //                 : <span>×</span>
+        //         }</button>
+        //     </span>);
+        return this.props.show ?
+            (<Portal id={this.props.id}>
+                <ResizableModal size="lg"
+                    draggable
+                    fade
+                    showFullscreen
+                    onClose={() => {
+                        this.closePanel(false);
+                    }}
+                    title={'Grafico dei valori di spostamento cumulato'}
+                    show>
+                    <div style={{ width: '97%', height: '90%' }}>
                         <h2>Codice: {this.props.sarChartData.code}</h2>
                         {this.showChart()}
                     </div>
-                </Dialog>
-            </BorderLayout>)
+                </ResizableModal>
+            </Portal>)
             : null;
     }
+
     accept = (check, value) => {
         if (value) {
             this.props.onSetSarChartVisibility(check, value.code);

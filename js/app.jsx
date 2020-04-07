@@ -20,7 +20,7 @@ ConfigUtils.setConfigProp('themePrefix', 'difesa_suolo');
  *
  * ConfigUtils.setLocalConfigurationFile('localConfig.json');
  */
-ConfigUtils.setLocalConfigurationFile('localConfig.json');
+ConfigUtils.setLocalConfigurationFile('localConfig_ds.json');
 
 /**
  * Use a custom application configuration file with:

@@ -2,18 +2,17 @@
     "proxyUrl": {
         "url": "proxy/?url=",
         "useCORS": [
-            "http://geoportale.lamma.rete.toscana.it/geoserver_sar",
-            "https://geoportale.lamma.rete.toscana.it/geoserver_sar",
-			"https://geoportale.lamma.rete.toscana.it/geoserver_ds",
-			"http://geoportale.lamma.rete.toscana.it/geoserver_ds",
-            "https://geoportale.lamma.rete.toscana.it/cgi-bin/sar_app/sarCharts.py",
-            "https://nominatim.openstreetmap.org",
-            "https://epsg.io/3003.proj4",
-            "https://epsg.io/6707.proj4",
-			"https://epsg.io/4326.proj4"
+          "http://demo.geo-solutions.it/geoserver",
+          "https://demo.geo-solutions.it:443/geoserver",
+          "https://demo.geo-solutions.it/geoserver",
+          "https://nominatim.openstreetmap.org",
+          "http://cloudsdi.geo-solutions.it",
+          "https://gs-stable.geo-solutions.it/geoserver",
+          "https://gs-stable.geo-solutions.it:443/geoserver"
         ]
     },
     "geoStoreUrl": "rest/geostore/",
+    "mailingList": "https://groups.google.com/forum/#!forum/mapstore-users",
     "printUrl": "pdf/info.json",
     "bingApiKey": "AhuXBu7ipR1gNbBfXhtUAyCZ6rkC5PkWpxs2MnMRZ1ZupxQfivjLCch22ozKSCAn",
     "mapquestApiKey": "__API_KEY_MAPQUEST__",
@@ -33,35 +32,23 @@
     "authenticationRules": [{
         "urlPattern": ".*geostore.*",
         "method": "bearer"
-    }, {
-		    "urlPattern": "http(s)?\\:\\/\\/geoportale\\.lamma\\.rete\\.toscana\\.it\\/geoserver_sar/.*",
+      }, {
+        "urlPattern": ".*rest/config.*",
+        "method": "bearer"
+      },
+      {
+        "urlPattern": "http(s)?\\:\\/\\/gs-stable\\.geo-solutions\\.it\\/geoserver/.*",
         "authkeyParamName": "authkey",
         "method": "authkey"
     }],
     "monitorState": [
-      {"name": "routing", "path": "routing.location.pathname"},
+      {"name": "router", "path": "router.location.pathname"},
       {"name": "browser", "path": "browser"},
+      {"name": "geostorymode", "path": "geostory.mode"},
       {"name": "featuregridmode", "path": "featuregrid.mode"}],
-    "projectionDefs": [{
-      "code": "EPSG:3003",
-      "def": "+proj=tmerc +lat_0=0 +lon_0=9 +k=0.9996 +x_0=1500000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs",
-      "extent": [1241482.0019, 973563.1609, 1830078.9331, 5215189.0853],
-      "worldExtent": [6.6500, 8.8000, 12.0000, 47.0500]
-    },{
-      "code": "EPSG:6707",
-      "def": "+proj=utm +zone=32 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
-      "extent": [1241482.0019, 973563.1609, 1830078.9331, 5215189.0853],
-      "worldExtent": [6.6500, 8.8000, 12.0000, 47.0500]
-    }],
+    "projectionDefs": [],
     "initialState": {
       "defaultState": {
-		"mapInfo": {
-			"configuration": {
-				"infoFormat": "text/html"
-			},
-			"enabled": true,
-			"infoFormat": "text/html"
-		},
         "annotations": {
           "config": {
             "multiGeometry": true,
@@ -85,8 +72,71 @@
                 "isNew": true,
                 "autoload": false
             },
-            "selectedService": "",
-            "services": {}
+            "selectedService": "gs_stable_csw",
+            "services": {
+              "gs_stable_csw": {
+                "url": "https://gs-stable.geo-solutions.it/geoserver/csw",
+                "type": "csw",
+                "title": "GeoSolutions GeoServer CSW",
+                "autoload": true
+              },
+              "gs_stable_wms": {
+                "url": "https://gs-stable.geo-solutions.it/geoserver/wms",
+                "type": "wms",
+                "title": "GeoSolutions GeoServer WMS",
+                "autoload": false
+              },
+              "gs_stable_wmts": {
+                "url": "https://gs-stable.geo-solutions.it/geoserver/gwc/service/wmts",
+                "type": "wmts",
+                "title": "GeoSolutions GeoServer WMTS",
+                "autoload": false
+              }
+            },
+            "staticServices": {
+              "default_map_backgrounds": {
+                "type": "backgrounds",
+                "title": "defaultMapBackgroundsServiceTitle",
+                "autoload": true,
+                "backgrounds": [{
+                    "type": "osm",
+                    "title": "Open Street Map",
+                    "name": "mapnik",
+                    "source": "osm",
+                    "group": "background"
+                }, {
+                    "type": "tileprovider",
+                    "title": "NASAGIBS Night 2012",
+                    "provider": "NASAGIBS.ViirsEarthAtNight2012",
+                    "name": "Night2012",
+                    "source": "nasagibs",
+                    "group": "background"
+                }, {
+                    "type": "tileprovider",
+                    "title": "OpenTopoMap",
+                    "provider": "OpenTopoMap",
+                    "name": "OpenTopoMap",
+                    "source": "OpenTopoMap",
+                    "group": "background"
+                }, {
+                    "format": "image/jpeg",
+                    "group": "background",
+                    "name": "s2cloudless:s2cloudless",
+                    "opacity": 1,
+                    "title": "Sentinel 2 Cloudless",
+                    "type": "wms",
+                    "url": "https://1maps.geo-solutions.it/geoserver/wms",
+                    "source": "s2cloudless",
+                    "singleTile": false
+                }, {
+                    "source": "ol",
+                    "group": "background",
+                    "title": "Empty Background",
+                    "fixed": true,
+                    "type": "empty"
+                }]
+              }
+            }
           }
         },
         "locales": {
@@ -129,7 +179,7 @@
                     },
                     "tools": ["locate"]
                 }
-            }, "Home", "Version", "DrawerMenu",
+            }, "Version", "DrawerMenu",
             {
                 "name": "BackgroundSelector",
                 "cfg": {
@@ -220,10 +270,8 @@
                 "externalCookieUrl" : "",
                 "declineUrl" : "http://www.google.com"
               }
-            }, {"name": "SarCharts", "cfg": {"withGlobalRef": true}}, {
-              "name": "About",
-              "showIn": ["BurgerMenu"]
-            }, "FeedbackMask"
+            },
+            "FeedbackMask"
         ],
         "desktop": [ "Details",
           {
@@ -236,22 +284,30 @@
                     "altShiftDragRotate": false
                   },
                   "attribution": {
-                    "container": "#mapstore-map-footer-container"
+                    "container": "#footer-attribution-container"
                   }
                 },
                 "leaflet": {
                   "attribution": {
-                    "container": "#mapstore-map-footer-container"
+                    "container": "#footer-attribution-container"
                   }
                 }
               },
               "toolsOptions": {
                 "scalebar": {
-                  "container" : "#mapstore-map-footer-container"
+                  "container" : "#footer-scalebar-container"
                 }
               }
             }
-          }, "AutoMapUpdate", {"name": "HelpLinkSar", "hideFrom": "{state('mapId') !== '14' ? 'BurgerMenu' : ''}"}, "Share", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "Annotations",
+          }, "AutoMapUpdate", "HelpLink", "DrawerMenu", "Version", "Notifications", "BackgroundSelector", "Annotations",
+            {
+              "name": "Share",
+              "cfg": {
+                "advancedSettings": {
+                  "bbox": true
+                }
+              }
+            },
             {
                 "name": "Identify",
                 "cfg": {
@@ -294,12 +350,16 @@
             }, {
                 "name": "TOC",
                 "cfg": {
-                    "activateQueryTool": true,
-                    "activateAddLayerButton": true,
-                    "activateAddGroupButton": true,
-                    "activateMetedataTool": false
+                    "activateMetedataTool": false,
+                    "layerOptions": {
+                      "legendOptions": {
+                        "WMSLegendOptions": "forceLabels:on;fontSize:30",
+                        "scaleDependent": true
+                      }
+                    }
                 }
             },
+            "FilterLayer",
             "AddGroup",
             "TOCItemsSettings",
             "Tutorial", "MapFooter", {
@@ -309,7 +369,9 @@
                     "showAddAsAnnotation": true
                   }
                 }
-            }, "Print", "MapImport", "MapExport", {
+            }, "Print", "MapImport", {
+                "name": "MapExport"
+            }, {
                 "name": "Settings",
                 "cfg": {
                     "wrap": true
@@ -330,7 +392,7 @@
                 "showLabels": true,
                 "showToggle": true,
                 "filterAllowedCRS": ["EPSG:4326", "EPSG:3857"],
-                "additionalCRS": {"EPSG:3003": { "label": "EPSG:3003" }}
+                "additionalCRS": {}
               }
             }, {
               "name": "CRSSelector",
@@ -340,9 +402,7 @@
                 },
                 "filterAllowedCRS": [
                   "EPSG:4326",
-                  "EPSG:3857",
-				  "EPSG:3003",
-				  "EPSG:6707"
+                  "EPSG:3857"
                 ],
                 "allowedRoles": [
                   "ADMIN"
@@ -395,22 +455,12 @@
                 "declineUrl" : "http://www.google.com"
                 }
             },
-            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "SearchServicesConfig", "WidgetsBuilder", "Widgets", "WidgetsTray", {"name": "SarCharts", "cfg": {"withGlobalRef": true}} ,
-	    "Timeline",
-	    "Playback",
+            "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "GlobeViewSwitcher", "SearchServicesConfig", "WidgetsBuilder", "Widgets",
+            "WidgetsTray",
+            "Timeline",
+            "Playback",
             "FeedbackMask",
-                  {
-                      "name": "StyleEditor",
-                      "cfg": {
-                          "styleService": {
-                              "baseUrl": "/geoserver_sar/",
-                              "availableUrls": [
-                                  "https://geoportale.lamma.rete.toscana.it/geoserver_sar/",
-                                  "https://geoportale.lamma.rete.toscana.it/geoserver_ds/"
-                              ]
-                          }
-                      }
-                  }
+            "StyleEditor"
         ],
         "embedded": [{
                 "name": "Map",
@@ -423,18 +473,18 @@
                         "altShiftDragRotate": false
                       },
                       "attribution": {
-                        "container": "#mapstore-map-footer-container"
+                        "container": "#footer-attribution-container"
                       }
                     },
                     "leaflet": {
                       "attribution": {
-                        "container": "#mapstore-map-footer-container"
+                        "container": "#footer-attribution-container"
                       }
                     }
                   },
                   "toolsOptions": {
                     "scalebar": {
-                      "container" : "#mapstore-map-footer-container"
+                      "container" : "#footer-scalebar-container"
                     }
                   }
                 }
@@ -520,15 +570,22 @@
                         "alwaysVisible": true
                     }
                 }
-            }, "FeedbackMask", {"name": "SarCharts", "cfg": {"withGlobalRef": true}}
+            },
+            "FeedbackMask"
         ],
         "common": [{
             "name": "OmniBar",
             "cfg": {
                 "className": "navbar shadow navbar-home"
             }
-        }, "ManagerMenu", "Login","Language", "NavMenu", "Attribution", "ScrollTop", "Notifications"],
-        "maps": ["HomeDescription", "MapSearch", "CreateNewMap", "FeaturedMaps", "ContentTabs",
+        }, {
+            "name": "ManagerMenu",
+            "cfg": {
+                "enableContextManager": true
+            }
+        }, "Login","Language", "NavMenu", "Attribution", "ScrollTop", "Notifications"],
+        "maps": ["HomeDescription", "Fork", "MapSearch", "CreateNewMap", "FeaturedMaps", "ContentTabs",
+
           {
             "name": "Maps",
             "cfg": {
@@ -547,7 +604,28 @@
               },
               "fluid": true
             }
-          }, "Footer", {
+          },
+          {
+            "name": "GeoStories",
+            "cfg": {
+              "mapsOptions": {
+                "start": 0,
+                "limit": 12
+              },
+              "fluid": true
+            }
+          },
+          {
+            "name": "Contexts",
+            "cfg": {
+              "mapsOptions": {
+                "start": 0,
+                "limit": 12
+              },
+              "fluid": true
+            }
+          }
+          , "MailingLists", "Footer", {
           "name": "Cookie",
           "cfg": {
             "externalCookieUrl" : "",
@@ -560,13 +638,20 @@
                 "containerPosition": "header",
                 "className": "navbar shadow navbar-home"
             }
-        }, "Login", "Language", "NavMenu", "Attribution", "Home", {
+        }, "Login", "Language", "NavMenu", "DashboardSave", "DashboardSaveAs", "Attribution", "Home", {
+          "name": "Share",
+          "cfg": {
+            "embedPanel": false,
+            "advancedSettings": false
+          }
+        },
+          {
           "name": "DashboardEditor",
           "cfg": {
-             "catalog": {
-              "url": "https://geoportale.lamma.rete.toscana.it/geoserver_laghi/wms",
-              "type": "wms",
-              "title": "Laghetti Geoserver",
+            "catalog": {
+              "url": "https://gs-stable.geo-solutions.it/geoserver/csw",
+              "type": "csw",
+              "title": "GeoSolutions GeoServer CSW",
               "autoload": true
             },
             "containerPosition": "columns"
@@ -594,6 +679,85 @@
                 "containerPosition": "header"
             }
         }],
-        "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
+        "geostory": [
+          {
+            "name": "OmniBar",
+            "cfg": {
+              "containerPosition": "header",
+              "className": "navbar shadow navbar-home"
+            }
+          },
+          "Login",
+          "BurgerMenu",
+          "Language",
+          "NavMenu",
+          "Attribution",
+          "Home",
+          "GeoStory",
+          "GeoStorySave",
+          "GeoStorySaveAs",
+          "MapEditor",
+          "MediaEditor",
+          {
+            "name": "GeoStoryEditor",
+            "cfg": {
+              "disablePluginIf": "{!!(state('browser') && state('browser').mobile)}",
+              "containerPosition": "columns"
+            }
+          },
+          {
+            "name": "GeoStoryNavigation",
+            "cfg": {
+              "containerPosition": "header"
+            }
+          },
+          "Notifications",
+          {
+            "name": "FeedbackMask",
+            "cfg": {
+              "containerPosition": "header"
+            }
+          },
+          {
+            "name": "Share",
+            "cfg": {
+              "embedPanel": false,
+              "advancedSettings": {
+                "homeButton": true
+              }
+            }
+          }
+        ],
+        "context-creator": [
+          {
+            "name": "OmniBar",
+            "cfg": {
+              "containerPosition": "header",
+              "className": "navbar shadow navbar-home"
+            }
+          },
+          "Redirect",
+          "Login",
+          "Language",
+          "NavMenu",
+          "Attribution",
+          {
+              "name": "ContextCreator",
+              "cfg": {
+                  "documentationBaseURL": "https://mapstore.geo-solutions.it/mapstore/docs/api/plugins",
+                  "backToPageDestRoute": "/context-manager",
+                  "backToPageConfirmationMessage": "contextCreator.undo"
+              }
+          },
+          "Notifications",
+          {
+            "name": "FeedbackMask",
+            "cfg": {
+              "containerPosition": "header"
+            }
+          }
+        ],
+        "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"],
+        "context-manager": ["Header", "Redirect", "Home", "ContextManager", "Footer"]
     }
 }

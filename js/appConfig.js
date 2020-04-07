@@ -21,8 +21,24 @@ module.exports = {
         component: require('../MapStore2/web/client/product/pages/MapViewer')
     }, {
         name: "mapviewer",
+        path: "/viewer/:mapType/:mapId/context/:contextId",
+        component: require('../MapStore2/web/client/product/pages/MapViewer')
+    }, {
+        name: "mapviewer",
         path: "/viewer/:mapId",
         component: require('../MapStore2/web/client/product/pages/MapViewer')
+    }, {
+        name: 'context',
+        path: "/context/:contextName",
+        component: require('../MapStore2/web/client/product/pages/Context').default
+    }, {
+        name: 'context',
+        path: "/context/:contextName/:mapId",
+        component: require('../MapStore2/web/client/product/pages/Context').default
+    }, {
+        name: 'context-creator',
+        path: "/context-creator/:contextId",
+        component: require('../MapStore2/web/client/product/pages/ContextCreator').default
     }, {
         name: "manager",
         path: "/manager",
@@ -31,6 +47,10 @@ module.exports = {
         name: "manager",
         path: "/manager/:tool",
         component: require('../MapStore2/web/client/product/pages/Manager')
+    }, {
+        name: "context-manager",
+        path: "/context-manager",
+        component: require('../MapStore2/web/client/product/pages/ContextManager').default
     }, {
         name: "dashboard",
         path: "/dashboard",
@@ -43,6 +63,14 @@ module.exports = {
         name: "rulesmanager",
         path: "/rules-manager",
         component: require('../MapStore2/web/client/product/pages/RulesManager')
+    }, {
+        name: "geostory",
+        path: "/geostory/:gid",
+        component: require('../MapStore2/web/client/product/pages/GeoStory').default
+    }, {
+        name: "geostory",
+        path: "/geostory/shared/:gid",
+        component: require('../MapStore2/web/client/product/pages/GeoStory').default
     }],
     initialState: {
         defaultState: {
